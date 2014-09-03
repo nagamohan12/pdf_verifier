@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users, :path_names => {:sign_in => "login", :sign_out => "logout"}
+
+  namespace :admin do
+    get '/' => 'users#index'
+    resources :users
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
