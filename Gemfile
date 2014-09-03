@@ -43,7 +43,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'binding_of_caller'
 group :development do
   gem 'awesome_print'
   gem 'better_errors'
