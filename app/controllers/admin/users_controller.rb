@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     @user.organization_id = current_user.organization_id
     respond_to do |format|
       if @user.save
@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::AdminController
     end
  
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update(user_params)
         format.html { redirect_to admin_users_path, :notice => 'User was successfully updated.' }
         format.json { head :ok }
       else
@@ -64,5 +64,9 @@ class Admin::UsersController < Admin::AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :role)
     end
 end

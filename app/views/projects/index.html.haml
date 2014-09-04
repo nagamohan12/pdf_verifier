@@ -1,5 +1,5 @@
 %h1 Listing projects
-- if current_user.super_admin?
+- if current_user.admin?
   = link_to 'New Project', new_project_path
 %br
 %table
@@ -25,7 +25,7 @@
         %td= latest_test.processed
         %td= latest_test.success
         %td= latest_test.failed
-        - if current_user.super_admin?
+        - if current_user.admin?
           %td
           %td= link_to 'Edit', edit_project_path(project)
           %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
