@@ -4,7 +4,7 @@ class TestRun < ActiveRecord::Base
 	scope :run_at_desc, -> { order(run_at: :desc)}
 
 	def success
-		self.total.to_i - self.failures.to_i
+		self.processed.to_i - self.failed.to_i
 	end
 
 	def failed
