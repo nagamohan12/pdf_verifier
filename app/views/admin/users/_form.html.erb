@@ -17,11 +17,10 @@
     <%= f.password_field :password_confirmation, :class => 'password_field' %>
   </div>
 </div>
-
 <div class ="control-group">
   <%= f.label :role , :class => 'control-label' %>
   <div class="controls">
-    <%= select_tag(:city_id, options_for_select(User::ROLES.map{|r| [r.to_s.capitalize, r]})) %>
+    <%= f.select(:role, options_for_select(User::ROLES.map{|r| [r.to_s.capitalize, r]})) %>
   </div> 
 </div>
 
