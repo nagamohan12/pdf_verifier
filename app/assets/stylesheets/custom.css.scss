@@ -1,0 +1,19 @@
+@import 'bootswatch/flatly/variables';
+@import 'bootstrap';
+@import "bootswatch/flatly/bootswatch";
+
+.glyphicon-user{
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+ }
+
+
+
+a.logo{
+  color: white;
+}
+
+a.logo:hover{
+  text-decoration: none;
+}

@@ -11,7 +11,6 @@ gem 'haml-rails'
 
 gem 'mysql2'
 
-gem 'simple_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
 # Use SCSS for stylesheets
@@ -31,6 +30,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+
+gem 'simple_form', :git => 'git@github.com:plataformatec/simple_form.git', :ref => '29f8f768f1702c6d032854b870d14eadb81cea88'
+
+gem 'bootswatch-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
