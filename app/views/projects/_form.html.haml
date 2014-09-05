@@ -1,0 +1,38 @@
+= simple_form_for @project, wrapper: :horizontal_form do |f|
+  - if @project.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
+
+
+  .field
+    = f.input :name
+  .field
+    = f.input :description, as: :text
+  .field
+    = f.input :input_folder
+  .field
+    = f.input :output_folder
+  .field
+    = f.input :run_frequency, collection: ['once','Twice']
+  .field
+    %label
+    / #datetimepicker.input-group.date
+    /   = f.input :run_at, as: :string
+    /   %span.input-group-addon
+    /     %span.glyphicon.glyphicon-calendar
+    / :javascript
+    /   $(function () {
+    /       $('#datetimepicker').datetimepicker();
+    /   });
+    #datetimepicker6
+      = f.input :run_at, as: :string
+      :javascript
+        $(function () {
+            $('#datetimepicker6').datetimepicker();
+        });
+
+  .actions
+    = f.button :submit

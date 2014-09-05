@@ -20,6 +20,7 @@ class Admin::UsersController < Admin::AdminController
 
   def create
     @user = User.new(user_params)
+    @user.organization_id = current_user.organization_id
     respond_to do |format|
       if @user.save
         flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages

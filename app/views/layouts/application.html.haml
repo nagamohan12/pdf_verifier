@@ -1,0 +1,24 @@
+!!!
+%html{:lang => "en"}
+  %head= render partial: 'layouts/head'
+  %body
+    .navbar.navbar-default.navbar-static-top
+      .container
+        %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          %ul.nav.navbar-nav
+            %h2
+              = link_to 'PDF Verifier', admin_users_path, class: 'logo'
+          %ul.nav.navbar-nav.navbar-right
+            -if user_signed_in?
+              %li= link_to('Logout', destroy_user_session_path, :method=>'delete')
+            -else
+              %li= link_to "Login",  new_user_session_path
+    .container
+      .row
+        .col-lg-9
+          = bootstrap_flash
+          = yield
