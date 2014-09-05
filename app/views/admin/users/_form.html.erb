@@ -1,31 +1,24 @@
-<div class="control-group">
-   <%= f.label :email, t("activerecord.attributes.user.email", :default => "Email"), :class => 'control-label' %>
-  <div class="input">
-    <%= f.text_field :email, :class => 'text_field' %>
+ <div class="input">
+    <%= f.input :username %>
   </div>
-</div>
 
-<div class="control-group">
-   <%= f.label :password, t("activerecord.attributes.user.password", :default => "password"), :class => 'control-label' %>
   <div class="input">
-    <%= f.password_field :password, :class => 'password_field' %>
+    <%= f.input :email %>
   </div>
-</div>
-<div class="control-group">
-   <%= f.label :Password, t("activerecord.attributes.user.password_confirmation", :default => "password_confirmation"), :class => 'control-label' %>
+
   <div class="input">
-    <%= f.password_field :password_confirmation, :class => 'password_field' %>
+    <%= f.input :password%>
   </div>
-</div>
-<div class ="control-group">
-  <%= f.label :role , :class => 'control-label' %>
+
+  <div class="input">
+    <%= f.input :password_confirmation, :class => 'password_field' %>
+  </div>
+
   <div class="controls">
-    <%= f.select(:role, options_for_select(User::ROLES.map{|r| [r.to_s.capitalize, r]})) %>
-  </div> 
-</div>
-
+    <%= f.input :role, collection: (User::ROLES.map{|r| [r.to_s.capitalize, r]}) %>
+  </div>
 
 <div class="form-actions">
-  <button class="btn primary" type="submit">Save</button> or
-	<%= link_to "Cancel", admin_users_path %>
+  <%= f.button :submit , "Save", class: %w(btn btn-default btn-success) %> or
+	<%= link_to "Cancel", admin_users_path , :class => "btn btn-sm btn-default"%>
 </div>
