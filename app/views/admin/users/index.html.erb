@@ -26,4 +26,6 @@
    </tbody>
 </table>
 
-<%= link_to "New", new_admin_user_path, :class => 'btn btn-primary' %>
+<div id="posts_list"><%= render :partial => "form" %></div>
+
+<%= link_to "New", new_admin_user_path, :class => 'btn btn-primary' ,:id => "new_form", :onclick=>"slideonlyone('sms_box');"%>

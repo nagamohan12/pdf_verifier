@@ -4,15 +4,16 @@ class Admin::UsersController < Admin::AdminController
   # GET /users
   # GET /users.json
   def index
+    @user = User.new
     @users = User.all
   end
 
   def show
   end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
   def edit
   end
