@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903114209) do
+ActiveRecord::Schema.define(version: 20140905084925) do
 
   create_table "organizations", force: true do |t|
     t.string   "name",        null: false
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pdf_xml_mappings", force: true do |t|
+    t.text     "xml_node"
+    t.text     "pdf_text"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,9 +40,18 @@ ActiveRecord::Schema.define(version: 20140903114209) do
     t.datetime "updated_at"
   end
 
+  create_table "reports", force: true do |t|
+    t.string   "policy_name"
+    t.text     "xml_node"
+    t.text     "reason"
+    t.integer  "test_run_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "test_runs", force: true do |t|
-    t.integer  "project_id",                    null: false
-    t.string   "status",     default: "Active"
+    t.integer  "project_id",                     null: false
+    t.string   "status",     default: "Pending"
     t.integer  "total"
     t.integer  "failures"
     t.datetime "run_at"
