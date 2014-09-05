@@ -2,7 +2,8 @@
 - if current_user.admin?
   = link_to 'New Project', new_project_path
 %br
-%table
+%table.table.table-striped.table-hover
+
   %tr
     %th Project Name
     %th Last Run At
@@ -25,6 +26,18 @@
         %td= latest_test.processed
         %td= latest_test.success
         %td= latest_test.failed
+        - if current_user.admin?
+          %td
+          %td= link_to 'Edit', edit_project_path(project)
+          %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+      - else
+        %td= link_to project.name, project
+        %td= ""
+        %td= ""
+        %td= ""
+        %td= ""
+        %td= ""
         - if current_user.admin?
           %td
           %td= link_to 'Edit', edit_project_path(project)

@@ -1,6 +1,6 @@
 %h1 Project : #{@project.name}
 
-%table
+%table.table.table-striped.table-hover
   %tr
     %th Last Run At
     %th Status
@@ -15,4 +15,4 @@
       %td= test_run.processed
       %td= test_run.success
       %td= test_run.failed
-  = link_to 'Back', projects_path
+  = link_to 'Back', projects_path, class: 'btn btn-link'
