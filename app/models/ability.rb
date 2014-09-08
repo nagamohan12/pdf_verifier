@@ -7,9 +7,9 @@ class Ability
       can :manage, :all
     elsif user.role == 'admin'
       can :manage, User
-      #can :manage, :projects
+      can :manage, Project
     else
-      can :read, :all
+      can :read, Project
     end
     # Define abilities for the passed in user here. For example:
     #
