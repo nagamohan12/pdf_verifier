@@ -1,24 +1,7 @@
- <div class="input">
-    <%= f.input :username %>
-  </div>
-
-  <div class="input">
-    <%= f.input :email %>
-  </div>
-
-  <div class="input">
-    <%= f.input :password %>
-  </div>
-
-  <div class="input">
-    <%= f.input :password_confirmation %>
-  </div>
-
-  <div class="controls">
-    <%= f.input :role, collection: (User::ROLES.map{|r| [r.to_s.capitalize, r]}) %>
-  </div>
-
-<div class="form-actions">
-  <%= f.button :submit , "Save", class: %w(btn btn-default btn-success) %> or
-	<%= link_to "Cancel", admin_users_path , :class => "btn btn-sm btn-default"%>
-</div>
+<%= f.input :username %>
+<%= f.input :email %>
+<%= f.input :password %>
+<%= f.input :password_confirmation %>
+<%= f.input :role, collection: (User::ROLES.map{|r| [r.to_s.capitalize, r]}) %>
+<%= f.button :submit , "Save", class: %w(btn btn-default btn-success) %> or
+<%= link_to "Cancel", admin_users_path , :class => "btn btn-sm btn-default"%>
