@@ -4,16 +4,12 @@ class Admin::UsersController < Admin::AdminController
   # GET /users
   # GET /users.json
   def index
-    @user = User.new
     @users = User.all
   end
 
   def show
   end
 
-  # def new
-  #   @user = User.new
-  # end
 
   def edit
   end
@@ -26,10 +22,12 @@ class Admin::UsersController < Admin::AdminController
         flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages
         format.html { redirect_to admin_users_path, :notice => 'User was successfully created.' }
         format.json { render :json => @user, :status => :created, :location => @user }
+        format.js
       else
         flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages
         format.html { render :action => "new"}
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -68,6 +66,6 @@ class Admin::UsersController < Admin::AdminController
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :role,:username)
+      params.require(:user).permit(:email, :password, :password_confirmation, :role, :username)
     end
 end
