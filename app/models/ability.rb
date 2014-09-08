@@ -6,10 +6,10 @@ class Ability
     if user.role == 'super_admin'
       can :manage, :all
     elsif user.role == 'admin'
-      can :manage, :users
+      can :manage, User
       #can :manage, :projects
     else
-      can :read, :all 
+      can :read, :all
     end
     # Define abilities for the passed in user here. For example:
     #
