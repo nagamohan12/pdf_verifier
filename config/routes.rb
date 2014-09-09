@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'users#index'
     resources :users
+    resources :organizations
   end
 
   resources :projects

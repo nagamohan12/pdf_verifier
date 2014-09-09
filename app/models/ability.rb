@@ -3,13 +3,15 @@ class Ability
 
   def initialize(user)
 
-    if user.role == 'super_admin'
+    if user.super_admin?
       can :manage, :all
-    elsif user.role == 'admin'
-      can :manage, User
-      can :manage, Project
+    elsif user.admin?
+      can :manage, :all
+      cannot :manage, Organization
     else
-      can :read, Project
+      can :read, :all
+      cannot :read, User
+      cannot :read, Organization
     end
     # Define abilities for the passed in user here. For example:
     #

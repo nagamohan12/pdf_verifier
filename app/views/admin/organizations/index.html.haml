@@ -1,0 +1,20 @@
+%h1 Listing Organizations
+
+%table.table.table-striped
+  %tr
+    %th Name
+    %th Description
+    %th Actions
+
+  - @organizations.each do |organization|
+    %tr
+      %td= organization.name
+      %td= organization.description || "--"
+      %td
+        = link_to 'Show', admin_organization_path(organization), :class => "btn btn-primary btn-xs"
+        = link_to 'Edit', edit_admin_organization_path(organization), :class => "btn btn-primary btn-xs"
+        = link_to 'Destroy', admin_organization_path(organization), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-primary btn-xs"
+
+%br
+
+= link_to 'New Organization', new_admin_organization_path
