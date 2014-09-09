@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Xml node:
+  = @pdf_xml_mapping.xml_node
+%p
+  %b Pdf text:
+  = @pdf_xml_mapping.pdf_text
+%p
+  %b Project:
+  = @pdf_xml_mapping.project.name
+
+= link_to 'Edit', edit_pdf_xml_mapping_path(@pdf_xml_mapping)
+\|
+= link_to 'Back', pdf_xml_mappings_path

@@ -1,0 +1,13 @@
+= simple_form_for(@pdf_xml_mapping) do |f|
+	= f.error_notification
+
+
+	.form-inputs
+		= f.input :project_id, collection: Project.all
+		.duplicatable_nested_form
+			= f.input :xml_node, as: :string
+			= f.input :pdf_text, as: :string
+			= link_to 'Add New', '', :class => 'duplicate_nested_form'
+
+	.form-actions
+		= f.button :submit
