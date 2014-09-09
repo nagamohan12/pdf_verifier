@@ -1,8 +1,6 @@
 %h1 Listing projects
-- if current_user.admin?
-  = link_to 'New Project', new_project_path
 %br
-%table.table.table-striped.table-hover
+%table.table.table-striped.table-hover#projects_list
 
   %tr
     %th Project Name
@@ -16,29 +14,18 @@
     %th
 
   - @projects.each do |project|
-    %tr
-      - if project.test_runs.present?
-        - latest_test = project.test_runs.last_run_at
+    = render :partial => "project", :locals => {:project => project}
+%br
 
-        %td= link_to project.name, project
-        %td= latest_test.run_at
-        %td= latest_test.status
-        %td= latest_test.processed
-        %td= latest_test.success
-        %td= latest_test.failed
-        - if current_user.admin?
-          %td
-          %td= link_to 'Edit', edit_project_path(project)
-          %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- if current_user.admin?
+  %button#project_form.btn.btn-primary New Project
+  #new_project_form{:style => "display:none;"}
+    %h1 Creating project
+    = render :partial => "new", :locals => {:project => Project.new}
 
-      - else
-        %td= link_to project.name, project
-        %td= ""
-        %td= ""
-        %td= ""
-        %td= ""
-        %td= ""
-        - if current_user.admin?
-          %td
-          %td= link_to 'Edit', edit_project_path(project)
-          %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  :javascript
+    $("#project_form").click(function(){
+      $("#new_project_form").css("display", "block");
+      $(this).hide();
+    })

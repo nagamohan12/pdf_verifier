@@ -1,7 +1,3 @@
-%h1 Editing project
-
-= render 'form'
-
-= link_to 'Show', @project
-\|
-= link_to 'Back', projects_path
+= simple_form_for @project, wrapper: :horizontal_form do |f|
+  %input{:name => "_method", :type => "hidden", :value => "put"}/
+  = render :partial => "form", :locals => {:f => f}
