@@ -24,7 +24,7 @@
                   %ul.dropdown-menu
                     %li
                       %li= link_to "#{current_user.username} Details", "/admin/users/#{current_user.id}"
-                      -if current_user.admin? || current_user.super_admin?
+                      -if current_user.admin?
                         %li= link_to('Users List', '/admin/users')
 
                       %li= link_to('Logout', destroy_user_session_path, :method=>'delete')

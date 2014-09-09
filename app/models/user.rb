@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :organization_id
 
 	def admin?
-    self.try(:role) == 'admin'
+    self.try(:role) == 'admin' || 'super_admin'
   end
 
   def super_admin?
