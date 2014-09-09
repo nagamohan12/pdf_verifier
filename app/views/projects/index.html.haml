@@ -20,7 +20,7 @@
 - if current_user.admin?
   %button#project_form.btn.btn-primary New Project
   #new_project_form{:style => "display:none;"}
-    %h1 Creating project
+    %h3 Creating Project
     = render :partial => "new", :locals => {:project => Project.new}
 
 
