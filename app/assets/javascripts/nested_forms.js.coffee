@@ -6,10 +6,10 @@ jQuery ($) ->
 
       $(".destroy_duplicate_nested_form:first").remove()
 
-      $('.destroy_duplicate_nested_form').live 'click', (e) ->
-        $(this).closest('.duplicatable_nested_form').slideUp().remove()
+      $(document).on 'click', ".destroy_duplicate_nested_form", (e) ->
+        $(this).closest('.duplicatable_nested_form').remove()
 
-      $('.duplicate_nested_form').click (e) ->
+      $('.duplicate_nested_form').on 'click', (e)->
         e.preventDefault()
 
         lastNestedForm = $('.duplicatable_nested_form').last()

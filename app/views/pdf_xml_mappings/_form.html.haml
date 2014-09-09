@@ -1,13 +1,16 @@
-= simple_form_for(@pdf_xml_mapping) do |f|
+= simple_form_for @project,url: pdf_xml_mappings_path, method: :post do |f|
 	= f.error_notification
 
-
 	.form-inputs
-		= f.input :project_id, collection: Project.all
-		.duplicatable_nested_form
-			= f.input :xml_node, as: :string
-			= f.input :pdf_text, as: :string
-			= link_to 'Add New', '', :class => 'duplicate_nested_form'
+		= f.input :id, collection: current_user.organization.projects, include_blank: false, label: 'Project'
+		.row
+			.col-md-5
+				%label *Xml Node
+			.col-md-5
+				%label *Pdf Text
+		#mappings
+			= render :partial => 'mapping_fields', :locals => {:f => f}
+		= link_to 'Add New', '', :class => 'duplicate_nested_form'
 
 	.form-actions
 		= f.button :submit

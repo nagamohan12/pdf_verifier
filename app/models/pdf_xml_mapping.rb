@@ -1,4 +1,6 @@
 class PdfXmlMapping < ActiveRecord::Base
 	belongs_to :project
-	accepts_nested_attributes_for :project, allow_destroy: true
+
+	validates_presence_of :xml_node
+	validates_presence_of :pdf_text
 end

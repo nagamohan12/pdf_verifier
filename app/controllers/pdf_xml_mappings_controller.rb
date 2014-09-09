@@ -14,7 +14,8 @@ class PdfXmlMappingsController < ApplicationController
 
   # GET /pdf_xml_mappings/new
   def new
-    @pdf_xml_mapping = PdfXmlMapping.new
+    @project = current_user.organization.projects.first
+    2.times { @project.pdf_xml_mappings.build } if @project.pdf_xml_mappings.empty?
   end
 
   # GET /pdf_xml_mappings/1/edit
@@ -24,15 +25,14 @@ class PdfXmlMappingsController < ApplicationController
   # POST /pdf_xml_mappings
   # POST /pdf_xml_mappings.json
   def create
-    @pdf_xml_mapping = PdfXmlMapping.new(pdf_xml_mapping_params)
-
+    @project = Project.find(params[:project][:id])
     respond_to do |format|
-      if @pdf_xml_mapping.save
-        format.html { redirect_to @pdf_xml_mapping, notice: 'Pdf xml mapping was successfully created.' }
-        format.json { render :show, status: :created, location: @pdf_xml_mapping }
+      if @project.update(project_params)
+        format.html { redirect_to @project, notice: 'Pdf xml mapping was successfully created.' }
+        format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
-        format.json { render json: @pdf_xml_mapping.errors, status: :unprocessable_entity }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,9 +56,14 @@ class PdfXmlMappingsController < ApplicationController
   def destroy
     @pdf_xml_mapping.destroy
     respond_to do |format|
-      format.html { redirect_to pdf_xml_mappings_url, notice: 'Pdf xml mapping was successfully destroyed.' }
+      flash.notice = 'Pdf xml mapping was successfully destroyed.' 
       format.json { head :no_content }
     end
+  end
+
+  def update_mapping_fields
+    @project = Project.find(params[:id])
+    format.html { render :partial => 'mapping_fields'}
   end
 
   private
@@ -68,7 +73,7 @@ class PdfXmlMappingsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def pdf_xml_mapping_params
-      params.require(:pdf_xml_mapping).permit(:xml_node, :pdf_text, :project_id)
+    def project_params
+      params.require(:project).permit(:id, pdf_xml_mappings_attributes: [:id, :xml_node, :pdf_text, :project_id])
     end
 end
