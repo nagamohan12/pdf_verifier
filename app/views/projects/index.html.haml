@@ -11,34 +11,22 @@
     %th Processed
     %th Success
     %th Failed
-    %th
-    %th
-    %th
 
   - @projects.each do |project|
     %tr
+      %td= link_to project.name, project
       - if project.test_runs.present?
         - latest_test = project.test_runs.last_run_at
 
-        %td= link_to project.name, project
         %td= latest_test.run_at
-        %td= latest_test.status
+        - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'
+        %td= image_tag(status_image, size: "28x28", alt: latest_test.status)
         %td= latest_test.processed
         %td= latest_test.success
         %td= latest_test.failed
-        - if current_user.admin?
-          %td
-          %td= link_to 'Edit', edit_project_path(project)
-          %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
       - else
-        %td= link_to project.name, project
         %td= ""
         %td= ""
         %td= ""
         %td= ""
         %td= ""
-        - if current_user.admin?
-          %td
-          %td= link_to 'Edit', edit_project_path(project)
-          %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }

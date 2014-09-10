@@ -1,5 +1,5 @@
 class PdfXmlMappingsController < ApplicationController
-  before_action :set_pdf_xml_mapping, only: [:show, :edit, :update, :destroy]
+  before_action :set_pdf_xml_mapping, only: [:edit, :update, :destroy]
 
   # GET /pdf_xml_mappings
   # GET /pdf_xml_mappings.json
@@ -10,6 +10,7 @@ class PdfXmlMappingsController < ApplicationController
   # GET /pdf_xml_mappings/1
   # GET /pdf_xml_mappings/1.json
   def show
+    @project = Project.find(params[:id])
   end
 
   # GET /pdf_xml_mappings/new

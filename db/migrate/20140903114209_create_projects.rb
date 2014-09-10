@@ -5,9 +5,10 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :input_folder
-      t.string :output_folder
+      t.string :pdf_folder
       t.string :run_frequency
-      t.datetime :run_at
+      t.datetime :first_run
+      t.datetime :next_run
 
       t.timestamps
     end
