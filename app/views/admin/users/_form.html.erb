@@ -1,7 +1,7 @@
-<%= f.input :username %> &nbsp;
-<%= f.input :email %> &nbsp;
-<%= f.input :password %> &nbsp;
-<%= f.input :password_confirmation %> &nbsp;
+<%= f.input :username %>
+<%= f.input :email %>
+<%= f.input :password %>
+<%= f.input :password_confirmation %>
 <%= f.input :role, collection: (User::ROLES.map{|r| [r.to_s.capitalize, r]}), prompt: false %>
 <%= f.button :submit , "Save", class: %w(btn btn-default btn-success) %> or
 <%= link_to "Cancel", admin_users_path , :class => "btn btn-sm btn-default"%>

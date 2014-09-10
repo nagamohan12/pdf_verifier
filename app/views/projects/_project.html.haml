@@ -1,17 +1,17 @@
 %tr
-      %td= link_to project.name, project
-      - if project.test_runs.present?
-        - latest_test = project.test_runs.last_run_at
+  %td= link_to project.name, project
+  - if project.test_runs.present?
+    - latest_test = project.test_runs.last_run_at
 
-        %td= latest_test.run_at
-        - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'
-        %td= image_tag(status_image, size: "28x28", alt: latest_test.status)
-        %td= latest_test.processed
-        %td= latest_test.success
-        %td= latest_test.failed
-      - else
-        %td= ""
-        %td= ""
-        %td= ""
-        %td= ""
-        %td= ""
+    %td= latest_test.run_at
+    - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'
+    %td= image_tag(status_image, size: "28x28", alt: latest_test.status)
+    %td= latest_test.processed
+    %td= latest_test.success
+    %td= latest_test.failed
+  - else
+    %td= ""
+    %td= ""
+    %td= ""
+    %td= ""
+    %td= ""
