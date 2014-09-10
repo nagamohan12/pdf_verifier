@@ -15,7 +15,7 @@ class PdfXmlMappingsController < ApplicationController
   # GET /pdf_xml_mappings/new
   def new
     @project = current_user.organization.projects.first
-    2.times { @project.pdf_xml_mappings.build } if @project.pdf_xml_mappings.empty?
+    @project.pdf_xml_mappings.empty? ? 2.times { @project.pdf_xml_mappings.build } : @project.pdf_xml_mappings.build
   end
 
   # GET /pdf_xml_mappings/1/edit
@@ -63,7 +63,10 @@ class PdfXmlMappingsController < ApplicationController
 
   def update_mapping_fields
     @project = Project.find(params[:id])
-    format.html { render :partial => 'mapping_fields'}
+    @project.pdf_xml_mappings.empty? ? 2.times { @project.pdf_xml_mappings.build } : @project.pdf_xml_mappings.build
+    respond_to do |format|
+      format.html { render :partial => 'mapping_fields'}
+    end
   end
 
   private

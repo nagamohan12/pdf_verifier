@@ -16,7 +16,7 @@
   .field
     = f.input :output_folder
   .field
-    = f.input :run_frequency, collection: ['once','Twice']
+    = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
   .field
     %label
     / #datetimepicker.input-group.date
