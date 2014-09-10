@@ -1,0 +1,9 @@
+- f ||= SimpleForm::FormBuilder.new('project', @project, self, {})
+= f.simple_fields_for :pdf_xml_mappings, wrapper: :horizontal_form do |m|
+	.duplicatable_nested_form.row
+		= m.input :xml_node, as: :string,wrapper_html: { class: 'col-md-5' },label: false
+		= m.input :pdf_text, as: :string,wrapper_html: { class: 'col-md-5' },label: false
+		- if m.object.new_record?
+			= link_to 'Remov', '', :remote => true, :class => 'destroy_duplicate_nested_form'
+		- else
+			= link_to 'Remove', "/pdf_xml_mappings/#{m.object.id}", :method => :delete, :remote => true, :class => 'destroy_duplicate_nested_form',data: { confirm: 'Are you sure to delete this mapping?'}

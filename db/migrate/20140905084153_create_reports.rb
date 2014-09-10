@@ -1,10 +1,11 @@
 class CreateReports < ActiveRecord::Migration
   def change
     create_table :reports do |t|
-      t.string :policy_name
-      t.text :xml_node
-      t.text :reason
+      t.string :pdf_name
+      t.string :xml_node
+      t.string :reason
       t.integer :test_run_id
+      t.boolean :is_passed?
 
       t.timestamps
     end

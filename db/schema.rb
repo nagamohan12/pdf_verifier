@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905084925) do
+ActiveRecord::Schema.define(version: 20140910071436) do
 
   create_table "organizations", force: true do |t|
     t.string   "name",        null: false
@@ -29,29 +29,32 @@ ActiveRecord::Schema.define(version: 20140905084925) do
   end
 
   create_table "projects", force: true do |t|
-    t.integer  "organization_id", null: false
+    t.integer  "organization_id",                null: false
     t.string   "name"
     t.text     "description"
     t.string   "input_folder"
-    t.string   "output_folder"
+    t.string   "pdf_folder"
     t.string   "run_frequency"
-    t.datetime "run_at"
+    t.datetime "first_run"
+    t.datetime "next_run"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",          default: true
   end
 
   create_table "reports", force: true do |t|
-    t.string   "policy_name"
-    t.text     "xml_node"
-    t.text     "reason"
+    t.string   "pdf_name"
+    t.string   "xml_node"
+    t.string   "reason"
     t.integer  "test_run_id"
+    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "test_runs", force: true do |t|
-    t.integer  "project_id",                     null: false
-    t.string   "status",     default: "Pending"
+    t.integer  "project_id", null: false
+    t.string   "status"
     t.integer  "total"
     t.integer  "failures"
     t.datetime "run_at"

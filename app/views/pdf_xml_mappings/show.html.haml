@@ -1,0 +1,12 @@
+%h3 Project : #{@project.name}
+%table.table.table-striped.table-hover
+  %tr
+    %th Xml node
+    %th Pdf text
+
+
+  - @project.pdf_xml_mappings.each do |pxm|
+    %tr
+      %td= pxm.xml_node
+      %td= pxm.pdf_text
+  = link_to 'Back', @project, class: 'btn btn-link'

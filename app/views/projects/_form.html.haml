@@ -9,26 +9,13 @@
 
   .field
     = f.input :name
-  .field
     = f.input :description, as: :text
-  .field
     = f.input :input_folder
-  .field
-    = f.input :output_folder
-  .field
-    = f.input :run_frequency, collection: ['once','Twice']
-  .field
-    %label
-    / #datetimepicker.input-group.date
-    /   = f.input :run_at, as: :string
-    /   %span.input-group-addon
-    /     %span.glyphicon.glyphicon-calendar
-    / :javascript
-    /   $(function () {
-    /       $('#datetimepicker').datetimepicker();
-    /   });
+    = f.input :pdf_folder
+    = f.input :active, as: :boolean
+    = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
     #datetimepicker6
-      = f.input :run_at, as: :string
+      = f.input :first_run, as: :string
       :javascript
         $(function () {
             $('#datetimepicker6').datetimepicker();
