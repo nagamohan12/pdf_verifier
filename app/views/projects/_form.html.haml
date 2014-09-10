@@ -33,3 +33,21 @@
   = f.button :submit , "Save", class: %w(btn btn-default btn-success)
 
   = link_to "Cancel", projects_path , :class => "btn btn-sm btn-default"
+
+  .field
+    = f.input :name
+    = f.input :description, as: :text
+    = f.input :input_folder
+    = f.input :pdf_folder
+    = f.input :active, as: :boolean
+    = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
+    #datetimepicker6
+      = f.input :first_run, as: :string
+      :javascript
+        $(function () {
+            $('#datetimepicker6').datetimepicker();
+        });
+
+  .actions
+    = f.button :submit
+

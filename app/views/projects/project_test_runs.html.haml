@@ -1,0 +1,18 @@
+%h1 Project : #{@project.name}
+
+%table.table.table-striped.table-hover
+  %tr
+    %th Last Run At
+    %th Status
+    %th Processed
+    %th Successed
+    %th Failed
+
+  - @project.test_runs.run_at_desc.each do |test_run|
+    %tr
+      %td= test_run.run_at
+      %td= test_run.status
+      %td= test_run.processed
+      %td= test_run.success
+      %td= test_run.failed
+  = link_to 'Back', projects_path, class: 'btn btn-link'

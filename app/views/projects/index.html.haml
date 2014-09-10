@@ -9,9 +9,6 @@
     %th Processed
     %th Success
     %th Failed
-    %th
-    %th
-    %th
 
   - @projects.each do |project|
     = render :partial => "project", :locals => {:project => project}
@@ -29,3 +26,4 @@
       $("#new_project_form").css("display", "block");
       $(this).hide();
     })
+

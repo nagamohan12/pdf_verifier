@@ -1,5 +1,9 @@
-%h1 Project : #{@project.name}
-
+#project.row
+  - if current_user.admin?
+    .pull-right
+      = link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-primary'
+      = link_to 'Destroy', @project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-sm btn-primary'
+  %h3 Project : #{@project.name}
 %table.table.table-striped.table-hover
   %tr
     %th Last Run At
@@ -11,8 +15,11 @@
   - @project.test_runs.run_at_desc.each do |test_run|
     %tr
       %td= test_run.run_at
-      %td= test_run.status
+      - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
+      %td= image_tag(status_image, size: "28x28", alt: test_run.status)
       %td= test_run.processed
       %td= test_run.success
       %td= test_run.failed
   = link_to 'Back', projects_path, class: 'btn btn-link'
+  - if @project.pdf_xml_mappings.first.present?
+    = link_to 'List of mappings', @project.pdf_xml_mappings.first
