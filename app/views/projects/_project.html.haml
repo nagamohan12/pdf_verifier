@@ -1,13 +1,17 @@
 %tr
-  %td= latest_test.run_at
-  - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'
-  %td= image_tag(status_image, size: "28x28", alt: latest_test.status)
-  %td= link_to_if(latest_test.processed > 0, latest_test.processed, reports_show_report_path(test_run_id: latest_test.id, status: 'processed', from: 'projects'))
-  %td= link_to_if(latest_test.success > 0, latest_test.success, reports_show_report_path(test_run_id: latest_test.id, status: 'success', from: 'projects'))
-  %td= link_to_if(latest_test.failed > 0,latest_test.failed, reports_show_report_path(test_run_id: latest_test.id, status: 'failure', from: 'projects'))
+  %td= link_to project.name, project
+  - if project.test_runs.present?
+    - latest_test = project.test_runs.last_run_at
+
+    %td= latest_test.run_at
+    - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'
+    %td= image_tag(status_image, size: "28x28", alt: latest_test.status)
+    %td= link_to_if(latest_test.processed > 0, latest_test.processed, reports_show_report_path(test_run_id: latest_test.id, status: 'processed', from: 'projects'))
+    %td= link_to_if(latest_test.success > 0, latest_test.success, reports_show_report_path(test_run_id: latest_test.id, status: 'success', from: 'projects'))
+    %td= link_to_if(latest_test.failed > 0,latest_test.failed, reports_show_report_path(test_run_id: latest_test.id, status: 'failure', from: 'projects'))
   - else
-  %td= ""
-  %td= ""
-  %td= ""
-  %td= ""
-  %td= ""
+    %td= ""
+    %td= ""
+    %td= ""
+    %td= ""
+    %td= ""
