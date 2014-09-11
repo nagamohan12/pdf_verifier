@@ -18,15 +18,16 @@
 </table>
 <button class='btn btn-primary' id = "new_form">New</button>
 <div id="new_user_form" style="display:none;">
+ <h3> Creating User</h3>
   <%= render :partial => "new", :locals => {:user => User.new}%>
 </div>
 
 
 <script type = "text/javascript">
 
-$("#new_form").click(function(){
-  $("#new_user_form").css("display", "block");
-  $(this).hide();
-})
+  $("#new_form").click(function(){
+    $("#new_user_form").css("display", "block");
+    $(this).hide();
+  })
 
 </script>
