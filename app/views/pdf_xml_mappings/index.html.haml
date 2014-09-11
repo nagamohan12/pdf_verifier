@@ -1,22 +1,15 @@
-%h1 Listing pdf_xml_mappings
-
+%h3 Project : #{@project.name}
 %table.table.table-striped.table-hover
   %tr
     %th Xml node
     %th Pdf text
-    %th Project
-    %th
-    %th
-    %th
 
-  - @pdf_xml_mappings.each do |pdf_xml_mapping|
+
+  - @project.pdf_xml_mappings.each do |pxm|
     %tr
-      %td= pdf_xml_mapping.xml_node
-      %td= pdf_xml_mapping.pdf_text
-      %td= pdf_xml_mapping.project.name
-      %td= link_to 'Show', pdf_xml_mapping
-      %td= link_to 'Edit', edit_pdf_xml_mapping_path(pdf_xml_mapping)
-      %td= link_to 'Destroy', pdf_xml_mapping, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= pxm.xml_node
+      %td= pxm.pdf_text
+  = link_to 'Back', @project, class: 'btn btn-link'
 
 %br
 

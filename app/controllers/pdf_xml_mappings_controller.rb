@@ -4,7 +4,7 @@ class PdfXmlMappingsController < ApplicationController
   # GET /pdf_xml_mappings
   # GET /pdf_xml_mappings.json
   def index
-    @pdf_xml_mappings = PdfXmlMapping.all
+    @project = Project.find(params[:id])
   end
 
   # GET /pdf_xml_mappings/1
@@ -55,9 +55,10 @@ class PdfXmlMappingsController < ApplicationController
   # DELETE /pdf_xml_mappings/1
   # DELETE /pdf_xml_mappings/1.json
   def destroy
+    project_id = @pdf_xml_mapping.project_id
     @pdf_xml_mapping.destroy
     respond_to do |format|
-      flash.notice = 'Pdf xml mapping was successfully destroyed.' 
+      format.html { redirect_to project_mappings_url(project_id) ,method: 'GET', notice: 'Pdf xml mapping was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -6,7 +6,7 @@
   %h3 Project : #{@project.name}
 %table.table.table-striped.table-hover
   %tr
-    %th Last Run At
+    %th Last Ran At
     %th Status
     %th Processed
     %th Successed
@@ -22,4 +22,4 @@
       %td= link_to_if(test_run.failed > 0, test_run.failed, reports_show_report_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'))
   = link_to 'Back', projects_path, class: 'btn btn-link'
   - if @project.pdf_xml_mappings.first.present?
-    = link_to 'List of mappings', @project.pdf_xml_mappings.first
+    = link_to 'List of mappings', project_mappings_path(@project)
