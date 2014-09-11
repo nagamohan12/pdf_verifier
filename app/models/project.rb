@@ -4,5 +4,6 @@ class Project < ActiveRecord::Base
   has_many :pdf_xml_mappings
   accepts_nested_attributes_for :pdf_xml_mappings, allow_destroy: true
 
-  validates_presence_of :organization_id
+  validates_presence_of :organization_id,:name,:pdf_folder,:input_folder
+  validates_uniqueness_of :name, scope: :organization_id
 end

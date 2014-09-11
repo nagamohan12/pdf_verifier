@@ -1,0 +1,20 @@
+%h4 Project : #{@test_run.project.name}
+-if @test_run.run_at.present?
+  %h5 Ran At: #{@test_run.run_at.to_datetime}
+- source_from = params[:from] == 'projects' ? projects_path : @test_run.project
+= link_to 'Back', source_from, class: 'btn btn-sm btn-primary'
+%table.table.table-striped.table-hover
+  %tr
+    %th Xml Node
+    %th Pdf Text
+    %th Status
+    %th Reason
+
+  - @reports.each do |t|
+    %tr
+      %td= t.xml_node
+      %td= t.pdf_name
+      - status_image = t.is_passed? ? 'success.png' : 'failure.png' 
+      - status_message = t.is_passed? ? 'success' : 'failure' 
+      %td= image_tag(status_image, size: "28x28", alt: status_message)
+      %td= t.reason

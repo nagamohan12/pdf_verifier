@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   resources :projects
   resources :pdf_xml_mappings
-  get '/pdf_xml_mappings/update_mapping_fields/:id' => 'pdf_xml_mappings#update_mapping_fields'  
+  get '/pdf_xml_mappings/update_mapping_fields/:id' => 'pdf_xml_mappings#update_mapping_fields'
+  get '/reports/show_report' => 'reports#show_report'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
