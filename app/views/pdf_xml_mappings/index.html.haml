@@ -1,3 +1,5 @@
+.pull-right
+  = link_to 'Back', @project,  class: 'btn btn-sm btn-primary'
 %h3 Project : #{@project.name}
 %table.table.table-striped.table-hover
   %tr
@@ -9,8 +11,8 @@
     %tr
       %td= pxm.xml_node
       %td= pxm.pdf_text
-  = link_to 'Back', @project, class: 'btn btn-link'
+
 
 %br
 
-= link_to 'New Pdf xml mapping', new_pdf_xml_mapping_path
+= link_to 'New Pdf xml mapping', new_pdf_xml_mapping_path, class: 'btn btn-sm btn-primary'

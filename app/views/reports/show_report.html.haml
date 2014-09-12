@@ -1,8 +1,8 @@
+- source_from = params[:from] == 'projects' ? projects_path : @test_run.project
+= link_to 'Back', source_from, class: 'pull-right btn btn-sm btn-primary'
 %h4 Project : #{@test_run.project.name}
 -if @test_run.run_at.present?
   %h5 Ran At: #{@test_run.run_at.to_datetime}
-- source_from = params[:from] == 'projects' ? projects_path : @test_run.project
-= link_to 'Back', source_from, class: 'btn btn-sm btn-primary'
 %table.table.table-striped.table-hover
   %tr
     %th Xml Node
