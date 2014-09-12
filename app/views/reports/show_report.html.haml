@@ -14,7 +14,7 @@
     %tr
       %td= t.xml_node
       %td= t.pdf_name
-      - status_image = t.is_passed? ? 'success.png' : 'failure.png' 
-      - status_message = t.is_passed? ? 'success' : 'failure' 
+      - status_image = t.is_passed ? 'success.png' : 'failure.png' 
+      - status_message = t.is_passed ? 'success' : 'failure' 
       %td= image_tag(status_image, size: "28x28", alt: status_message)
       %td= t.reason
