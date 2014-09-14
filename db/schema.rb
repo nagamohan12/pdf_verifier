@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910071436) do
+ActiveRecord::Schema.define(version: 20140912062201) do
 
   create_table "organizations", force: true do |t|
     t.string   "name",        null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140910071436) do
     t.string   "xml_node"
     t.string   "reason"
     t.integer  "test_run_id"
-    t.boolean  "status"
+    t.boolean  "is_passed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

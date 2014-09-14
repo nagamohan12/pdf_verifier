@@ -1,0 +1,32 @@
+<h4>Project : #{@test_run.project.name}</h4>
+<% if @test_run.run_at.present? %>
+  <h5>Ran At: #{@test_run.run_at.to_datetime}</h5>
+<% end %>
+<% source_from = params[:from] == 'projects' ? projects_path : @test_run.project %>
+<%= link_to 'Back', source_from, class: 'btn btn-sm btn-primary' %>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Xml Node</th>
+    <th>Pdf Text</th>
+    <th>Status</th>
+    <th>Reason</th>
+  </tr>
+  <% @reports.each do |t| %>
+    <tr>
+      <td>
+        <%= t.xml_node %>
+      </td>
+      <td>
+        <%= t.pdf_name %>
+      </td>
+      <% status_image = t.is_passed ? 'success.png' : 'failure.png'  %>
+      <% status_message = t.is_passed ? 'success' : 'failure'  %>
+      <td>
+        <%= image_tag(status_image, size: "28x28", alt: status_message) %>
+      </td>
+      <td>
+        <%= t.reason %>
+      </td>
+    </tr>
+  <% end %>
+</table>
