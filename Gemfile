@@ -35,6 +35,10 @@ gem 'simple_form', :git => 'git@github.com:plataformatec/simple_form.git', :ref 
 
 gem 'bootswatch-rails'
 
+#pagination
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

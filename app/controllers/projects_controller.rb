@@ -4,12 +4,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.order('name asc').page(params[:page]).per(10)
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @test_runs = @project.test_runs.run_at_desc.page(params[:page]).per(10)
   end
 
   # GET /projects/new
@@ -22,7 +23,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    binding.pry
     @project = Project.new(project_params)
     @project.organization = current_user.organization
     respond_to do |format|

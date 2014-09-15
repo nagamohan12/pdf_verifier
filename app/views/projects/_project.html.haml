@@ -1,4 +1,5 @@
 %tr
+  %td= @i
   %td= link_to project.name, project
   - if project.test_runs.present?
     - latest_test = project.test_runs.last_run_at

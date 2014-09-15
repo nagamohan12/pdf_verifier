@@ -1,16 +1,19 @@
 %h1 Listing projects
 %br
+= paginate @projects
 %table.table.table-striped.table-hover#projects_list
 
   %tr
+    %th Sl No.
     %th Project Name
     %th Last Ran At
     %th Status
     %th Processed
     %th Success
     %th Failed
-
+  - @i = 0
   - @projects.each do |project|
+    -@i = @i+1
     = render :partial => "project", :locals => {:project => project}
 %br
 
