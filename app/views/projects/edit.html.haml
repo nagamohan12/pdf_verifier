@@ -1,4 +1,18 @@
 = simple_form_for @project, wrapper: :horizontal_form do |f|
-  %input{:name => "_method", :type => "hidden", :value => "put"}/
-  = render :partial => "form", :locals => {:f => f}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  = f.input :name
+  = f.input :description, as: :text
+  = f.input :input_folder
+  = f.input :pdf_folder
+  = f.input :active, as: :boolean
+  = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
+  #datetimepicker7
+    = f.input :first_run, as: :datetime_picker
+    :javascript
+      $(function () {
+          $('#datetimepicker7').datetimepicker();
+      });
+
+  = f.button :submit, "Save", class: %w(btn btn-default btn-success)
+  = link_to "Cancel", projects_path , :class => "btn btn-sm btn-default"
 

@@ -1,8 +1,5 @@
 <% if @project.errors.any? -%>
   $("#new_project_form").html("<%= escape_javascript(render :partial => 'new', :locals => {:project => @project})%>");
 <% else -%>
-  $("#new_project_form").hide();
-  $("#project_form").show();
-  $("#new_project_form").html("<%= escape_javascript(render :partial => 'new', :locals => {:project => Project.new})%>");
-  $('#projects_list tr:last').after("<%= escape_javascript(render :partial => 'project', :locals => {:project => @project})%>")
+  $(window.location.replace("/projects"))
 <% end -%>

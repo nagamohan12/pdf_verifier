@@ -15,17 +15,3 @@
   - @projects.each do |project|
     -@i = @i+1
     = render :partial => "project", :locals => {:project => project}
-%br
-
-- if current_user.admin?
-  %button#project_form.btn.btn-primary New Project
-  #new_project_form{:style => "display:none;"}
-    %h3 Creating Project
-    = render :partial => "new", :locals => {:project => Project.new}
-
-
-  :javascript
-    $("#project_form").click(function(){
-      $("#new_project_form").css("display", "block");
-      $(this).hide();
-    })

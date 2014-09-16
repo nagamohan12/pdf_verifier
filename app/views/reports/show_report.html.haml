@@ -1,8 +1,8 @@
 - source_from = params[:from] == 'projects' ? projects_path : @test_run.project
 = link_to 'Back', source_from, class: 'pull-right btn btn-sm btn-primary'
-%h4 Project : #{@test_run.project.name}
+%h3 Project : #{@test_run.project.name}
 - if @test_run.run_at.present?
-  %h5 Ran At: #{@test_run.run_at.to_datetime}
+  %h4 Ran At: #{@test_run.run_at.to_datetime}
   = paginate @reports_page
 #accordion.panel-group
   - i = 0

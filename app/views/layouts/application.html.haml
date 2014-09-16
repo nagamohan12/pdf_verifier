@@ -33,6 +33,8 @@
                       %li= link_to "#{current_user.username} Details", "/admin/users/#{current_user.id}"
                       -if current_user.admin?
                         %li= link_to('Users List', '/admin/users')
+                        %li
+                          %a{"data-target" => "#myModal", "data-toggle" => "modal"} Create New Project
 
                       %li= link_to('Logout', destroy_user_session_path, :method=>'delete')
             -else
@@ -42,3 +44,14 @@
         .col-lg-9
           = bootstrap_flash
           = yield
+          - if current_user && current_user.admin?
+            #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    %button.close{"data-dismiss" => "modal", :type => "button"}
+                      %span{"aria-hidden" => "true"} ×
+                      %span.sr-only Close
+                    %h4#myModalLabel.modal-title Creating Project
+                  #new_project_form.modal-body
+                    = render "projects/new"
