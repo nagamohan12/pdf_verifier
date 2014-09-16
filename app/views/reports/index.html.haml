@@ -10,6 +10,7 @@
   = search_form_for @search do |s|
     = s.label :pdf_name_cont, "Pdf File Name"
     = s.search_field :pdf_name_cont
+    = hidden_field_tag :project_id, @project.id
     = s.submit "Search"
   = paginate @test_runs
   - i = 0

@@ -1,6 +1,6 @@
 %tr
   %td= @i
-  %td= link_to project.name, project
+  %td= link_to project.name, reports_path(project_id: project.id)
   - if project.test_runs.present?
     - latest_test = project.test_runs.last_run_at
 

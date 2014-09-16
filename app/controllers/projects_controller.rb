@@ -4,13 +4,17 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all.order('name asc').page(params[:page]).per(10)
+    @search = current_user.projects.search(params[:q])
+    @projects = @search.result.order('name asc').page(params[:page]).per(10)
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @test_runs = @project.test_runs.run_at_desc.page(params[:page]).per(10)
+    @search = @project.reports.search(params[:q])
+    @test_run_ids = @search.result.map{|report| report.test_run_id}.uniq
+    @test_runs = @project.test_runs.where(id: @test_run_ids).run_at_desc.page(params[:page]).per(10)
+    # @test_runs = @project.test_runs.run_at_desc.page(params[:page]).per(10)
   end
 
   # GET /projects/new
@@ -70,6 +74,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:organization_id, :name, :description, :input_folder, :pdf_folder, :run_frequency, :first_run)
+      params.require(:project).permit(:organization_id, :name, :description, :input_folder, :pdf_folder, :run_frequency, :next_run, :active)
     end
 end
