@@ -13,8 +13,10 @@ class ReportsController < ApplicationController
     elsif params[:status] == 'failure'
       @reports = @test_run.reports.failure
     else
+      #binding.pry
       @reports = @test_run.reports
     end
-      
+      @reports_page = @reports.page(params[:page]).per(10)
+      @reports = @reports_page.group_by{ |t| t.pdf_name}
   end
 end
