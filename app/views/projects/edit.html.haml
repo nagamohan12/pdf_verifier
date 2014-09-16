@@ -7,7 +7,7 @@
   = f.input :active, as: :boolean
   = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
   #datetimepicker7
-    = f.input :first_run, as: :datetime_picker
+    = f.input :next_run, as: :datetime_picker
     :javascript
       $(function () {
           $('#datetimepicker7').datetimepicker();

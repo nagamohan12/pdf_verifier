@@ -13,7 +13,6 @@ class ReportsController < ApplicationController
     elsif params[:status] == 'failure'
       @reports = @test_run.reports.failure
     else
-      #binding.pry
       @reports = @test_run.reports
     end
       @reports_page = @reports.page(params[:page]).per(10)
