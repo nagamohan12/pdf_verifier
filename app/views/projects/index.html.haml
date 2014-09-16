@@ -1,5 +1,8 @@
-%h1 Listing projects
-%br
+%h3 Listing projects
+= search_form_for @search do |s|
+  = s.label :name_cont, "Project Name"
+  = s.text_field :name_cont
+  = s.submit "Search"
 = paginate @projects
 %table.table.table-striped.table-hover#projects_list
 

@@ -39,6 +39,10 @@ gem 'bootswatch-rails'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
+#search
+# gem 'ransack'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

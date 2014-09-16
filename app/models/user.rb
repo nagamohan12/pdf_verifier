@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 				 :recoverable, :rememberable, :trackable, :validatable
 
 	belongs_to :organization
+	has_many :projects, through: :organization
 	validates_presence_of :organization_id
 
 	def admin?

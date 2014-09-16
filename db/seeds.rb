@@ -14,11 +14,11 @@
 #create Projects
 project_name = ['Appolo','Medicare','techrains','softzone','care','suraksha','rabbit','pharmacy','janasena','bloodbank']
 10.times do |i|
-	Project.create(organization_id: @org.id,name: project_name[i],input_folder: 'username/'+project_name[i]+'/xml',pdf_folder: 'usernmae/'+project_name[i]+'/pdf',active: true, run_frequency: 'daily', first_run: "#{Time.now}", next_run: "#{Time.now}")
+	Project.create(organization_id: @org.id,name: project_name[i],input_folder: 'username/'+project_name[i]+'/xml',pdf_folder: 'usernmae/'+project_name[i]+'/pdf',active: true, run_frequency: 'daily', last_run: "#{Time.now}", next_run: "#{Time.now}")
 end
 
 10.times do |i|
-	Project.create(organization_id: @org.id,name: project_name[i].reverse,input_folder: 'username/'+project_name[i]+'/xml',pdf_folder: 'usernmae/'+project_name[i]+'/pdf',active: true, run_frequency: 'monthly', first_run: "#{Time.now}", next_run: "#{Time.now}")
+	Project.create(organization_id: @org.id,name: project_name[i].reverse,input_folder: 'username/'+project_name[i]+'/xml',pdf_folder: 'usernmae/'+project_name[i]+'/pdf',active: true, run_frequency: 'monthly', last_run: "#{Time.now}", next_run: "#{Time.now}")
 end
 
 #create Test Runs
