@@ -13,5 +13,4 @@
 
 .modal-footer
   = f.button :submit, "Save", class: %w(btn btn-default btn-success)
-  = link_to "Cancel", projects_path , :class => "btn btn-sm btn-default"
-
+  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
