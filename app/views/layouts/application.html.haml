@@ -23,6 +23,9 @@
                   %ul.dropdown-menu
                     %li
                       %li= link_to "Projects List", projects_path
+                    -if current_user.admin?
+                      %li
+                        %a{"data-target" => "#myModal", "data-toggle" => "modal"} Create New Project
                       %li= link_to('Create/Update Project Mapping', '/pdf_xml_mappings/new', :method=>'get')
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -33,9 +36,6 @@
                       %li= link_to "#{current_user.username} Details", "/admin/users/#{current_user.id}"
                       -if current_user.admin?
                         %li= link_to('Users List', '/admin/users')
-                        %li
-                          %a{"data-target" => "#myModal", "data-toggle" => "modal"} Create New Project
-
                       %li= link_to('Logout', destroy_user_session_path, :method=>'delete')
             -else
               %li= link_to "Login",  new_user_session_path

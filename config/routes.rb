@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/reports/index' => 'reports#index', as: 'reports'
   get '/pdf_xml_mappings/update_mapping_fields/:id' => 'pdf_xml_mappings#update_mapping_fields'
   get '/projects/:id/pdf_xml_mappings' => 'pdf_xml_mappings#index', as: 'project_mappings'
-  get '/reports/show_report' => 'reports#show_report'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

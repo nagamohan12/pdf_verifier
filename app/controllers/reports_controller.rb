@@ -8,20 +8,7 @@ class ReportsController < ApplicationController
     elsif params[:status] == 'failure'
       @reports = @reports.failure
     end
-      @reports_page = @reports.page(params[:page]).per(10)
-      @reports = @reports_page.group_by{ |t| t.pdf_name}
-  end
-
-  def show_report
-    # @test_run = TestRun.find(params[:test_run_id])
-    # if params[:status] == 'success'
-    #   @reports = @test_run.reports.passed
-    # elsif params[:status] == 'failure'
-    #   @reports = @test_run.reports.failure
-    # else
-    #   @reports = @test_run.reports
-    # end
-    #   @reports_page = @reports.page(params[:page]).per(10)
-    #   @reports = @reports_page.group_by{ |t| t.pdf_name}
+      @reports_page = @reports.group(:pdf_name).select('pdf_name, count(*) as count, sum(is_passed) as passed').order(:pdf_name).page(params[:page]).per(3)
+      @reports = @reports.group_by{ |t| t.pdf_name}
   end
 end

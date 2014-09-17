@@ -2,32 +2,37 @@
 = link_to 'Back', source_from, class: 'pull-right btn btn-sm btn-primary'
 %h3 Project : #{@test_run.project.name}
 - if @test_run.run_at.present?
+  %h4 Staus: #{params[:status]}
   %h4 Ran At: #{@test_run.run_at.to_datetime}
   = search_form_for @search do |s|
     = s.label :pdf_name_cont, "Project Name"
     = s.text_field :pdf_name_cont
     = hidden_field_tag :test_run_id, params[:test_run_id]
+    = hidden_field_tag :status, params[:status]
     = s.submit "Search"
   = paginate @reports_page
 #accordion.panel-group
   - i = 0
-  - @reports.each do |k,v|
+  - @reports_page.each do |page|
     - i = i + 1
     .panel.panel-default
       .panel-heading
-        %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content_#{i}"}Pdf Text "#{k}"
+        - style = page.count == page.passed ? 'text-success' : 'text-danger'
+        %h4.panel-title{:class => style}
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content_#{i}"}
+            #{page.pdf_name} -
+            %strong (#{page.count})
       .panel-collapse.collapse{:id => "content_#{i}"}
         .panel-body
-          %table.table.table-striped.table-hover
+          %table.table.table-striped.table-reports
             %tr
-              %th Xml Node
+              %th.col-lg-2 Xml Node
               - if params[:status] == "processed"
-                %th Status
+                %th.col-lg-1 Status
               - if ["processed", "failure"].include? (params[:status])
-                %th Reason
+                %th.col-lg-5 Reason
 
-            - v.each do |r|
+            - @reports[page.pdf_name].each do |r|
               %tr
                 %td= r.xml_node
                 - if params[:status] == "processed"
