@@ -1,35 +1,38 @@
-#project.row
-  - if current_user.admin?
-    .pull-right
-      = link_to 'Back', projects_path, class: 'btn btn-sm btn-primary'
-      - if @project.pdf_xml_mappings.first.present?
-        = link_to 'List of mappings', project_mappings_path(@project), class: 'btn btn-sm btn-primary'
-      = link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-primary'
-      = link_to 'Destroy', @project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-sm btn-primary'
-  %h3 Project : #{@project.name}
+- source_from = params[:from] == 'projects' ? projects_path : @test_run.project
+= link_to 'Back', source_from, class: 'pull-right btn btn-sm btn-primary'
+%h3 Project : #{@test_run.project.name}
+- if @test_run.run_at.present?
+  %h4 Ran At: #{@test_run.run_at.to_datetime}
   = search_form_for @search do |s|
-    = s.label :pdf_name_cont, "Pdf File Name"
-    = s.search_field :pdf_name_cont
-    = hidden_field_tag :project_id, @project.id
+    = s.label :pdf_name_cont, "Project Name"
+    = s.text_field :pdf_name_cont
+    = hidden_field_tag :test_run_id, params[:test_run_id]
     = s.submit "Search"
-  = paginate @test_runs
+  = paginate @reports_page
+#accordion.panel-group
   - i = 0
-%table.table.table-striped.table-hover
-  %tr
-    %th Sl No.
-    %th Last Ran At
-    %th Status
-    %th Processed
-    %th Successed
-    %th Failed
+  - @reports.each do |k,v|
+    - i = i + 1
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content_#{i}"}Pdf Text "#{k}"
+      .panel-collapse.collapse{:id => "content_#{i}"}
+        .panel-body
+          %table.table.table-striped.table-hover
+            %tr
+              %th Xml Node
+              - if params[:status] == "processed"
+                %th Status
+              - if ["processed", "failure"].include? (params[:status])
+                %th Reason
 
-  - @test_runs.each do |test_run|
-    - i = i+1
-    %tr
-      %td= i
-      %td= test_run.run_at
-      - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
-      %td= image_tag(status_image, size: "28x28", alt: test_run.status)
-      %td= link_to_if(test_run.processed > 0, test_run.processed, reports_show_report_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline")
-      %td= link_to_if(test_run.success > 0, test_run.success, reports_show_report_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline")
-      %td= link_to_if(test_run.failed > 0, test_run.failed, reports_show_report_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline")
+            - v.each do |r|
+              %tr
+                %td= r.xml_node
+                - if params[:status] == "processed"
+                  - status_image = r.is_passed ? 'success.png' : 'failure.png'
+                  - status_message = r.is_passed ? 'success' : 'failure'
+                  %td= image_tag(status_image, size: "28x28", alt: status_message)
+                - if ["processed", "failure"].include? (params[:status])
+                  %td= r.reason

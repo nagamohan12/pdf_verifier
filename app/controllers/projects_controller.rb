@@ -11,10 +11,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @search = @project.reports.search(params[:q])
-    @test_run_ids = @search.result.map{|report| report.test_run_id}.uniq
-    @test_runs = @project.test_runs.where(id: @test_run_ids).run_at_desc.page(params[:page]).per(10)
-    # @test_runs = @project.test_runs.run_at_desc.page(params[:page]).per(10)
+    # @search = @project.reports.search(params[:q])
+    # @test_run_ids = @search.result.map{|report| report.test_run_id}.uniq
+    # @test_runs = @project.test_runs.where(id: @test_run_ids).run_at_desc.page(params[:page]).per(10)
+    @test_runs = @project.test_runs.run_at_desc.page(params[:page]).per(10)
   end
 
   # GET /projects/new
