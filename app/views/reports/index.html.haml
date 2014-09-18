@@ -3,7 +3,7 @@
 %h3 Project : #{@test_run.project.name}
 - if @test_run.run_at.present?
   %h4 Staus: #{params[:status]}
-  %h4 Ran At: #{@test_run.run_at.to_datetime}
+  %h4 Ran At: #{@test_run.run_at.to_datetime.strftime('%d-%b-%Y %I:%M%p')}
   = search_form_for @search do |s|
     = s.label :pdf_name_cont, "Project Name"
     = s.text_field :pdf_name_cont

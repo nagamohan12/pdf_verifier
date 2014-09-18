@@ -10,7 +10,7 @@
 
   - @project.test_runs.run_at_desc.each do |test_run|
     %tr
-      %td= test_run.run_at
+      %td= test_run.run_at.strftime('%d-%b-%Y %I:%M%p')
       %td= test_run.status
       %td= test_run.processed
       %td= test_run.success
