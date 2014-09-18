@@ -10,15 +10,7 @@ class DatetimePickerInput < SimpleForm::Inputs::StringInput
     input_html_options[:data].merge!({ date_format: picker_pettern, date_language: I18n.locale.to_s,
                                        date_weekstart: I18n.t('datepicker.weekstart', :default => 0) })
 
-    template.content_tag :div, class: 'input-group date datetimepicker' do
-      input = super(wrapper_options) # leave StringInput do the real rendering
-      input += template.content_tag :span, class: 'input-group-btn' do
-        template.content_tag :button, class: 'btn btn-default', type: 'button' do
-          template.content_tag :span, '', class: 'fa fa-calendar'
-        end
-      end
-      input
-    end
+    super(wrapper_options)
   end
 
   def input_html_classes
