@@ -6,12 +6,11 @@
   = f.input :pdf_folder
   = f.input :active, as: :boolean
   = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
-  #datetimepicker7
-    = f.input :next_run, as: :datetime_picker
-    :javascript
-      $(function () {
-          $('#datetimepicker7').datetimepicker();
-      });
+  = f.input :next_run, as: :datetime_picker, input_html: {id: 'datetimepicker7'}
+  :javascript
+    $(function () {
+        $('#datetimepicker7').datetimepicker();
+    });
 
   = f.button :submit, "Save", class: %w(btn btn-default btn-success)
   = link_to "Cancel", projects_path , :class => "btn btn-sm btn-default"

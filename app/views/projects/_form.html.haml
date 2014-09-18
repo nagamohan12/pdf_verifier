@@ -4,12 +4,12 @@
 = f.input :pdf_folder
 = f.input :active, as: :boolean
 = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
-#datetimepicker6
-  = f.input :next_run, as: :datetime_picker
-  :javascript
-    $(function () {
-        $('#datetimepicker6').datetimepicker();
-    });
+
+= f.input :next_run, as: :datetime_picker, input_html: {id: 'datetimepicker6'}
+:javascript
+  $(function () {
+    $('#datetimepicker6').datetimepicker();
+  });
 
 .modal-footer
   = f.button :submit, "Save", class: %w(btn btn-default btn-success)

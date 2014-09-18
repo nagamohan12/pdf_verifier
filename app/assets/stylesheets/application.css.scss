@@ -15,5 +15,8 @@
  */
 /* import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2 */
 @import "bootstrap-sprockets";
+@import 'bootswatch/cosmo/variables';
+@import 'bootstrap';
+@import "bootswatch/cosmo/bootswatch";
 @import 'bootstrap-datetimepicker';
 
