@@ -17,6 +17,6 @@
     %td= ""
     %td= ""
 
-  %td= project.next_run.strftime('%d-%b-%Y %I:%M%p')
+  %td= project.next_run.strftime('%d-%b-%Y %I:%M%p') if project.next_run.present?
   %td= project.run_frequency
   %td= project.active == true ? 'Active' : 'In Active'
