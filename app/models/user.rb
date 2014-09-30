@@ -7,10 +7,10 @@ class User < ActiveRecord::Base
 
 	belongs_to :organization
 	has_many :projects, through: :organization
-	validates_presence_of :organization_id
+	validates_presence_of :organization_id 
 
-	def admin?
-    self.try(:role) == 'admin' || 'super_admin'
+    def admin?
+    self.try(:role) == ('admin' || 'super_admin')
   end
 
   def super_admin?

@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::AdminController
   # GET /users
   # GET /users.json
   def index
-    @users = current_user.organization.users
+    @users = current_user.admin? ? current_user.organization.users : User.all
   end
 
   def show

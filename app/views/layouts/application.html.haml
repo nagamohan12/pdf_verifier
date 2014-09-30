@@ -42,7 +42,6 @@
     .container
       .row
         .col-lg-9
-          = bootstrap_flash
           = yield
           - if current_user && current_user.admin?
             #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
