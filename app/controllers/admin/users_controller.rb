@@ -19,12 +19,12 @@ class Admin::UsersController < Admin::AdminController
     @user.organization_id = current_user.organization_id
     respond_to do |format|
       if @user.save
-        flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages
+        #flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages
         format.html { redirect_to admin_users_path, :notice => 'User was successfully created.' }
         format.json { render :json => @user, :status => :created, :location => @user }
         format.js
       else
-        flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages
+        #flash[:notice] = flash[:notice].to_a.concat @user.errors.full_messages
         format.html { render :action => "new"}
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
         format.js
