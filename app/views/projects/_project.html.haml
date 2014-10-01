@@ -1,8 +1,8 @@
 %tr
   %td= @i
   %td= link_to project.name, project
-  - if project.test_runs.present?
-    - latest_test = project.test_runs.last_run_at
+  - if project.last_test_run.present?
+    - latest_test = project.last_test_run
 
     %td= latest_test.run_at.strftime('%d-%b-%Y %I:%M%p') if latest_test.run_at.present?
     - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'

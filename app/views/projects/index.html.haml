@@ -2,21 +2,26 @@
 = search_form_for @search do |s|
   = s.label :name_cont, "Project Name"
   = s.text_field :name_cont
+  = s.label :last_test_run_run_at_cont
+  = s.text_field :last_test_run_run_at_cont
   = s.submit "Search"
 = paginate @projects
 %table.table.table-striped.table-hover#projects_list
 
   %tr
     %th Sl No.
-    %th Project Name
-    %th Last Ran At
-    %th Status
-    %th Processed
+    %th
+      = sort_link @search, :name, "Project Name"
+    = content_tag :th , sort_link(@search, :last_test_run_run_at, "Last Ran At")
+    = content_tag :th , sort_link(@search, :last_test_run_status, "Status")
+    = content_tag :th , sort_link(@search, :last_test_run_processed, "Processed")
     %th Success
-    %th Failed
-    %th Next Run At
-    %th Frequency
-    %TH Status
+    = content_tag :th , sort_link(@search, :last_test_run_failures, "Failed")
+    = content_tag :th , sort_link(@search, :next_run, "Next Run At")
+    %th
+      = sort_link @search, :run_frequency, "Frequency"
+    %th
+      = sort_link @search, :active, "Project Status"
   - @i = 0
   - @projects.each do |project|
     -@i = @i+1

@@ -4,8 +4,28 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @search = current_user.projects.search(params[:q])
+    #Use Datepicker and modify date params like following
+    date_input = params[:q].delete(:last_test_run_run_at_cont)
+    params[:q].merge!({ 
+      last_test_run_run_at_gt: date_input.to_datetime, 
+      last_test_run_run_at_lteq: date_input.to_datetime + 1 - 1.seconds 
+      }) if !date_input.blank?
+    @search = current_user.projects.includes(:last_test_run).search(params[:q])
     @projects = @search.result.order('name asc').page(params[:page]).per(10)
+    # @test_runs = []
+    # @projects = current_user.projects.each do |p|
+    #   @test_runs << p.test_runs.last_run_at
+    # end
+    # @search = @test_runs.search(params[:q])
+    # @projects = @search.result.order('name asc').page(params[:page]).per(10)
+
+    # @projects = current_user.projects.each do |p|
+    #   binding.pry
+    #   test_run = p.test_runs.last_run_at
+    #   p.association("test_runs").target = test_run
+    # end
+    # @search = @projects.includes(:test_runs).search(params[:q])
+    # @projects = @search.result.order('name asc').page(params[:page]).per(10)
   end
 
   # GET /projects/1
