@@ -13,4 +13,14 @@ class Project < ActiveRecord::Base
   :message => "can only contain letters and numbers."
   validates_length_of :name, :within => 3..50, :too_long => "name is too long", :too_short => "name is too short"
   validates_uniqueness_of :name, scope: :organization_id
+
+  def test_last_ran
+  	self.last_test_run.run_at
+  end
+
+  def last_test_failed
+  	self.last_test_run.failed > 0 ? false : true
+  end
+
+  
 end

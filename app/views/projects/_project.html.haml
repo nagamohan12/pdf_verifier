@@ -4,8 +4,8 @@
   - if project.last_test_run.present?
     - latest_test = project.last_test_run
 
-    %td= latest_test.run_at.strftime('%d-%b-%Y %I:%M%p') if latest_test.run_at.present?
-    - status_image = latest_test.failed > 0 ?  'failure.png' : 'success.png'
+    %td= project.last_run.strftime('%d-%b-%Y %I:%M%p') if project.last_run.present?
+    - status_image = project.last_test_failed ? 'success.png' : 'failure.png'
     %td= image_tag(status_image, size: "28x28", alt: latest_test.status)
     %td= link_to_if(latest_test.processed > 0, latest_test.processed, reports_path(test_run_id: latest_test.id, status: 'processed', from: 'projects'), :class => "link-underline")
     %td= link_to_if(latest_test.success > 0, latest_test.success, reports_path(test_run_id: latest_test.id, status: 'success', from: 'projects'), :class => "link-underline")

@@ -5,11 +5,11 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     #Use Datepicker and modify date params like following
-    date_input = params[:q].delete(:last_test_run_run_at_cont)
+    date_input = params[:q].delete(:last_run_cont) if params[:q].present?
     params[:q].merge!({ 
-      last_test_run_run_at_gt: date_input.to_datetime, 
-      last_test_run_run_at_lteq: date_input.to_datetime + 1 - 1.seconds 
-      }) if !date_input.blank?
+      last_run_gt: date_input.to_datetime, 
+      last_run_lteq: date_input.to_datetime + 1 - 1.seconds 
+      }) if date_input.present?
     @search = current_user.projects.includes(:last_test_run).search(params[:q])
     @projects = @search.result.order('name asc').page(params[:page]).per(10)
     # @test_runs = []
@@ -20,7 +20,6 @@ class ProjectsController < ApplicationController
     # @projects = @search.result.order('name asc').page(params[:page]).per(10)
 
     # @projects = current_user.projects.each do |p|
-    #   binding.pry
     #   test_run = p.test_runs.last_run_at
     #   p.association("test_runs").target = test_run
     # end

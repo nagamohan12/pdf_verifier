@@ -5,11 +5,18 @@
   %h4 Staus: #{params[:status]}
   %h4 Ran At: #{@test_run.run_at.to_datetime.strftime('%d-%b-%Y %I:%M%p')}
   = search_form_for @search do |s|
-    = s.label :pdf_name_cont, "Project Name"
-    = s.text_field :pdf_name_cont
-    = hidden_field_tag :test_run_id, params[:test_run_id]
-    = hidden_field_tag :status, params[:status]
-    = s.submit "Search"
+    #accordion.panel-group
+      .panel.panel-default
+        .panel-heading.fa-search
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content"}
+            %strong Search
+        .panel-collapse.collapse{:id => "content"}
+          .panel-body  
+            = s.label :pdf_name_cont, "Project Name"
+            = s.text_field :pdf_name_cont
+            = hidden_field_tag :test_run_id, params[:test_run_id]
+            = hidden_field_tag :status, params[:status]
+            = s.submit "Search"
   = paginate @reports_page
 #accordion.panel-group
   - i = 0

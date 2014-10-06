@@ -58,6 +58,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.2'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'binding_of_caller'
+gem "font-awesome-rails"
 group :development do
   gem 'awesome_print'
   gem 'better_errors'
