@@ -3,7 +3,8 @@
 = search_form_for @search do |s|
   #accordion.panel-group
     .panel.panel-default
-      .panel-heading.fa-search
+      .panel-heading
+        %i.fa.fa-search 
         %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content"}
           %strong Search
       .panel-collapse.collapse{:id => "content"}
