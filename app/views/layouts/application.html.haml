@@ -56,6 +56,17 @@
                     New Project
         .cnt-wrapper
           = yield
+          - if current_user && current_user.admin?
+            #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    %button.close{"data-dismiss" => "modal", :type => "button"}
+                      %span{"aria-hidden" => "true"} ×
+                      %span.sr-only Close
+                    %h4#myModalLabel.modal-title Creating Project
+                  #new_project_form.modal-body
+                    = render "projects/new"
         %br/
         .footer-wrapper
           © Copyright - 2014 - pdfgene.com
