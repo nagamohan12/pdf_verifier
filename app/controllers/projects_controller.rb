@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  require 'fileutils'
   # GET /projects
   # GET /projects.json
   def index
@@ -50,6 +51,8 @@ class ProjectsController < ApplicationController
     @project.organization = current_user.organization
     respond_to do |format|
       if @project.save
+        # adding file with project id for shedule in java
+        create_file('create')
         format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
         format.js
@@ -66,6 +69,8 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
+        # adding empty file with project id for shedule in java
+        create_file('update')
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -82,6 +87,23 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def create_filename(narration,path)
+    "#{path}/#{@project.id}_#{narration}.txt"
+  end
+
+  def create_file(narration)
+    unless @project.next_run.blank? && @project.active
+      path = Rails.root+'project_files/'
+      file_name = create_filename(narration,path)
+      unless File.directory?(path)
+        FileUtils.mkdir_p(path)
+      end
+      file_config = FileConfiguration.new(key: "document to watch",value: path.to_s)
+      file_config.save
+      File.new(file_name,'w')
     end
   end
 
