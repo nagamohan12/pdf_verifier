@@ -23,8 +23,11 @@
     %tr
       %td= i
       %td= test_run.run_at.strftime('%d-%b-%Y %I:%M%p')  if test_run.run_at.present?
-      - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
-      %td= image_tag(status_image, size: "28x28", alt: test_run.status)
-      %td= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline")
-      %td= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline")
-      %td= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline")
+      - if test_run.status == 'success' || test_run.status == 'failure'
+        - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
+        %td= image_tag(status_image, size: "28x28", alt: test_run.status)
+        %td= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline")
+        %td= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline")
+        %td= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline")
+      - else
+        %td{colspan: 4,align: 'center'}= test_run.status_message

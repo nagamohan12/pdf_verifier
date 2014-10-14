@@ -31,7 +31,7 @@ class TestRun < ActiveRecord::Base
 		when 'fof'
 			'Both XML and PDF folder not found in specified path'
 		else 
-			'Something went wrong'
+			'Still in progress,please wait....'
 		end
 	end
 end
