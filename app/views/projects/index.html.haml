@@ -1,38 +1,39 @@
-%h3  Projects
-%a{"data-target" => "#myModal", "data-toggle" => "modal","style" => "float:right;", "class" => "btn btn-sm btn-primary"} Create New Project
-= search_form_for @search do |s|
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading.fa-search
-        %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content"}
-          %strong Search
-      .panel-collapse.collapse{:id => "content"}
-        .panel-body
-          = s.label :name_cont, "Project Name"
-          = s.text_field :name_cont
-          = s.label :last_run_cont, "Last Ran At"
-          = s.text_field :last_run_cont
-          = s.submit "Search"
-= paginate @projects
-%table.table.table-striped.table-hover#projects_list
-  %tr
-    %th Sl No.
-    %th
-      = sort_link @search, :name, "Project Name"
-    = content_tag :th , sort_link(@search, :last_run, "Last Ran At")
-    /* = content_tag :th , sort_link(@search, :last_test_run_status, "Test Status")
-    /* = content_tag :th , sort_link(@search, :last_test_run_processed, "Processed")
-    %th Test Status
-    %th Processed
-    %th Success
-    %th Failed
-    /* = content_tag :th , sort_link(@search, :last_test_run_failures, "Failed")
-    = content_tag :th , sort_link(@search, :next_run, "Next Run At")
-    %th
-      = sort_link @search, :run_frequency, "Frequency"
-    %th
-      = sort_link @search, :active, "Project Status"
-  - @i = 0
-  - @projects.each do |project|
-    -@i = @i+1
-    = render :partial => "project", :locals => {:project => project}
+
+.projects_search
+  = search_form_for @search do |s|
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %img{:alt => "search", :height => "15", :src => "/assets/search-icon.png", :width => "15"}/
+      %li
+        = s.text_field :name_cont, class: "form-style", placeholder: "Project Name"
+      %li
+        = s.text_field :last_run_cont, class: "form-style", placeholder: "Last Run At"
+      %li
+        = s.submit  "Search", class: "btn-style"
+  .cnt-header-txt
+    Projects
+.cnt-box
+  %table.table.table-striped.table-hover#projects_list
+    %tr
+      %th Sl No.
+      %th
+        = sort_link @search, :name, "Project Name"
+      = content_tag :th , sort_link(@search, :last_run, "Last Ran At")
+      /* = content_tag :th , sort_link(@search, :last_test_run_status, "Test Status")
+      /* = content_tag :th , sort_link(@search, :last_test_run_processed, "Processed")
+      %th Test Status
+      %th Processed
+      %th Success
+      %th Failed
+      /* = content_tag :th , sort_link(@search, :last_test_run_failures, "Failed")
+      = content_tag :th , sort_link(@search, :next_run, "Next Run At"), class: 'active'
+      %th.active
+        = sort_link @search, :run_frequency, "Frequency"
+      %th.active
+        = sort_link @search, :active, "Project Status"
+    - @i = 0
+    - @projects.each do |project|
+      -@i = @i+1
+      = render :partial => "project", :locals => {:project => project}
+.pagination
+  = paginate @projects

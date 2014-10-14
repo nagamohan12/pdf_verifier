@@ -15,9 +15,72 @@
  */
 /* import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2 */
 @import "bootstrap-sprockets";
-@import 'bootswatch/cosmo/variables';
+/*@import 'bootswatch/cosmo/variables'; */
+@import "bootstrap/mixins";
 @import 'bootstrap';
-@import "bootswatch/cosmo/bootswatch";
+/*@import "bootswatch/cosmo/bootswatch"; */
 @import 'bootstrap-datetimepicker';
 @import "font-awesome";
 
+
+.banner {
+    background: url('header-bg.png') repeat-x;
+    height: 57px;
+    ul.nav > li
+    {
+        span {font-size: 16px; color: #fff;}
+        a.dropdown-toggle {color: #fff; font-size: 16px;}
+        border-right: 2px, solid, #fff;
+        padding-left: 10px;
+        a:hover, a:focus {
+            text-decoration: none;
+            background-color: transparent;
+        }
+    }
+}
+
+.sub-header {
+    height: 37px;
+    background:url(header-nav-bg.png) repeat-x;
+    padding-right: 15px;
+    ul.nav > li
+    {
+        background:url(header-nav-style.png) right no-repeat;
+        span {font-size: 12px; color: #333;}
+        a
+        {
+            height: inherit;
+            width :auto;
+            padding-top: 6px;
+            color: #333;
+            font-size: 12px;
+            &:hover {
+                background:url(header-nav-hover.png) repeat-x;
+            }
+        }
+    }
+}
+
+body {
+    margin:0px;
+    padding:0px;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#333;
+    background:#ebebeb;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+.footer {
+    text-align: center;
+}
+
+.cnt-wrapper {
+    width:98%;
+    height:auto;
+    float:left;
+    margin:0% 1%;
+}

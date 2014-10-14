@@ -2,31 +2,26 @@
 %html{:lang => "en"}
   %head= render partial: 'layouts/head'
   %body
-    .navbar.navbar-inverse.navbar-static-top{:role => "navigation"}
+    .navbar.navbar-static-top.banner{:role => "navigation"}
       .container-fluid
         %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
         .navbar-collapse.collapse.navbar-responsive-collapse
-          %ul.nav.navbar-nav.logo
-            %img{:src => "assets/logo.png"}
+          .navbar-header.logo
+            %img{:src => "/assets/logo.png"}
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
-              %li.glyphicon.glyphicon-user.b= "Welcome " + current_user.username
+              %li
+                %span.glyphicon.glyphicon-user
+                %span{:style =>"color: #000;"} Welcome,
+                %span= current_user.username
               -if current_user.super_admin?
                 %li= link_to('Organizations', '/admin/organizations')
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = 'Projects'
-                  %span.caret
-                  %ul.dropdown-menu
-                    %li
-                      %li= link_to "Projects List", projects_path
-                    -if current_user.admin?
-                      %li= link_to('Create/Update Project Mapping', '/pdf_xml_mappings/new', :method=>'get')
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  %img{:src => '/assets/settings-icon.png'}
                   ="Account Settings"
                   %span.caret
                   %ul.dropdown-menu
@@ -34,21 +29,39 @@
                       %li= link_to "#{current_user.username} Details", "/admin/users/#{current_user.id}"
                       -if current_user.admin?
                         %li= link_to('Users List', admin_users_path)
-                      %li= link_to('Logout', destroy_user_session_path, :method=>'delete')
+              %li
+                = link_to(destroy_user_session_path, :method=>'delete') do
+                  %span
+                    Logout
+                    %img{:src => "/assets/logout-icon.png"}
             -else
               %li= link_to "Login",  new_user_session_path
+        -if user_signed_in?
+          .row.sub-header
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                = link_to projects_path do
+                  %span
+                    %img{:src => "/assets/list-icon.png"}
+                  Projects
+              %li
+                %a{"data-target" => "#myModal", "data-toggle" => "modal"}
+                  %span
+                    %img{:alt => "add", :height => "14", :src => "/assets/add-icon.png", :width => "14"}/
+                    New Project
     .container-fluid
-      .row
-        .col-lg
-          = yield
-          - if current_user && current_user.admin?
-            #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-dialog
-                .modal-content
-                  .modal-header
-                    %button.close{"data-dismiss" => "modal", :type => "button"}
-                      %span{"aria-hidden" => "true"} ×
-                      %span.sr-only Close
-                    %h4#myModalLabel.modal-title Creating Project
-                  #new_project_form.modal-body
-                    = render "projects/new"
+      .col-lg.cnt-wrapper
+        = yield
+        - if current_user && current_user.admin?
+          #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %button.close{"data-dismiss" => "modal", :type => "button"}
+                    %span{"aria-hidden" => "true"} ×
+                    %span.sr-only Close
+                  %h4#myModalLabel.modal-title Creating Project
+                #new_project_form.modal-body
+                  = render "projects/new"
+    .row.footer
+      © Copyright - 2014 - pdfgene.com

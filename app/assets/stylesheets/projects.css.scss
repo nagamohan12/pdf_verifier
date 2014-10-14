@@ -1,3 +1,86 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+@mixin border-radius($radius: 1px) {
+      -webkit-border-radius: $radius;
+         -moz-border-radius: $radius;
+              border-radius: $radius;
+}
+
+
+
+.cnt-header-txt {
+    font-size:16px;
+    color: #545454;
+    line-height:30px;
+}
+
+.pagination{
+    font-size:14px;
+}
+
+input.form-style {
+    @include border-radius(14px);
+    border: none;
+    width:179px;
+    height:28px;
+    padding:0px 10px;
+    font-size:12px;
+    color:#484848;
+    outline: none;
+    border-bottom: 2px solid #ccc;
+}
+
+.projects_search {
+  li{
+    padding: 0 2px;
+  }
+  margin: 2px 0 4px 0;
+}
+
+.btn-style {
+    background:url(btn-style.png) no-repeat;
+    text-align:center;
+    width:89px;
+    height:29px;
+    cursor:pointer;
+    border:none;
+    outline: none;
+}
+.btn-style:hover {
+    background:url(btn-style-hover.png) no-repeat;
+}
+
+#projects_list {
+    border:#dbdbdb 1px solid;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    tr{
+      border:none;
+    }
+    th {
+      background:#969696;
+      color:#FFF;
+      font-size:13px;
+      a {
+        color: #FFF;
+      }
+      &.active {
+        background: #7c7c7c;
+      }
+    }
+    td.next{
+        border-left:#dbdbdb 1px solid;
+    }
+    .red {
+      a {color:#F00;}
+    }
+    .green {
+      a {color:#54b300;}
+    }
+    .blue {
+      a {color:#009dd0;}
+    }
+}

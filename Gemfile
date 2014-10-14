@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'simple_form', :git => 'git@github.com:plataformatec/simple_form.git', :ref => '29f8f768f1702c6d032854b870d14eadb81cea88'
 
-gem 'bootswatch-rails'
+#gem 'bootswatch-rails'
 
 #pagination
 gem 'kaminari'
