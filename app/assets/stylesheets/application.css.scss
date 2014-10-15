@@ -46,6 +46,8 @@
     ul.nav > li
     {
         background:url(header-nav-style.png) right no-repeat;
+        margin-bottom: 5px;
+        height: 36px;
         span {font-size: 12px; color: #333;}
         a
         {
@@ -76,6 +78,7 @@ body {
 }
 .footer {
     text-align: center;
+    margin: 0px;
 }
 
 .cnt-wrapper {
