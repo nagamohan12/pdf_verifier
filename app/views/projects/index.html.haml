@@ -7,9 +7,16 @@
       %li
         = s.text_field :name_cont, class: "form-style", placeholder: "Project Name"
       %li
-        = s.text_field :last_run_cont, class: "form-style", placeholder: "Last Run At"
+        = s.input :last_run_cont, label: false, input_html: {id: 'datetimepicker',"data-date-format" => "YYYY/MM/DD",class: "form-style"}, placeholder: "Last Run At"
+        :javascript
+          $(function () {
+            $('#datetimepicker').datetimepicker({
+              pickTime: false
+            });
+          });        
       %li
-        = s.submit  "Search", class: "btn-style"
+        = s.submit  "Search", class: "btn-style",id: 'search_projects'
+
   .cnt-header-txt
     Projects
 .cnt-box
@@ -37,3 +44,5 @@
       = render :partial => "project", :locals => {:project => project}
 .pagination
   = paginate @projects
+
+
