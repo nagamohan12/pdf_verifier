@@ -10,7 +10,8 @@ class Ability
       cannot :manage, Organization
     else
       can :read, :all
-      cannot :read, User
+      can :manage, User, :id => user.id
+      # cannot :read, User
       cannot :read, Organization
     end
     # Define abilities for the passed in user here. For example:

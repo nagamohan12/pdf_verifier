@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def super_admin?
     self.try(:role) == 'super_admin'
   end
+
+  def normal_user?
+  	self.try(:role) != ('admin' || 'super_admin')
+  end
 end
