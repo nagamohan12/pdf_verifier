@@ -1,0 +1,23 @@
+.panel-body{
+    height: 300px;
+    overflow-y: scroll;
+}
+.panel-heading {
+    height: inherit;
+}
+
+.cnt-header-txt-reports {
+   font-size:16px;
+   color: #545454;
+   line-height:40px;
+   height: 35px;
+   border-bottom: #cdcdcd 1px solid;
+
+}
+
+.reports_search {
+ li{
+   padding: 0 2px;
+ }
+ margin: 6px 0 10px 0;
+}

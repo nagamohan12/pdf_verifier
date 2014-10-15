@@ -1,35 +1,41 @@
 - source_from = params[:from] == 'projects' ? projects_path : @test_run.project
-= link_to 'Back', source_from, class: 'pull-right btn btn-sm btn-primary'
-%h3 Project : #{@test_run.project.name}
-- if @test_run.run_at.present?
-  %h4 Staus: #{params[:status]}
-  %h4 Ran At: #{@test_run.run_at.to_datetime.strftime('%d-%b-%Y %I:%M%p')}
+.reports_search
   = search_form_for @search do |s|
-    #accordion.panel-group
-      .panel.panel-default
-        .panel-heading.fa-search
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content"}
-            %strong Search
-        .panel-collapse.collapse{:id => "content"}
-          .panel-body  
-            = s.label :pdf_name_cont, "Project Name"
-            = s.text_field :pdf_name_cont
-            = hidden_field_tag :test_run_id, params[:test_run_id]
-            = hidden_field_tag :status, params[:status]
-            = s.submit "Search"
-  = paginate @reports_page
-#accordion.panel-group
+    .pull-right
+      %ul.nav.navbar-nav
+        %li
+          %img{:alt => "search", :height => "15", :src => "/assets/search-icon.png", :width => "15"}/
+        %li
+          = s.text_field :pdf_name_cont, class: "form-style", placeholder: "Pdf Name"
+          = hidden_field_tag :test_run_id, params[:test_run_id]
+          = hidden_field_tag :status, params[:status]
+        %li
+          = s.submit "Search", class: 'btn-style'
+
+  .cnt-header-txt-reports
+    %h3{style: "display: inline;color: #003d60;font-size: 18px"} #{@test_run.project.name} : 
+    - if @test_run.run_at.present?
+      %h4{style: "display: inline;color: #0086d3;font-size: 14px"} #{@test_run.run_at.to_datetime.strftime('%d-%b-%Y %I:%M%p')}
+      %h5{style: "display: inline;font-size: 13px;color: #797a7b"} (#{params[:status].upcase})
+      %hr{style: "clear: both;"}/
+
+#accordion1.panel-group
   - i = 0
   - @reports_page.each do |page|
     - i = i + 1
+    - css = (i == 1) ? 'panel-collapse collapse in' : 'panel-collapse collapse'
     .panel.panel-default
-      .panel-heading
-        - style = page.count == page.passed ? 'text-success' : 'text-danger'
-        %h4.panel-title{:class => style}
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#content_#{i}"}
+      %a{"data-parent" => "#accordion1", "data-toggle" => "collapse", :href => "#content_#{i}"}
+        .panel-heading.reports
+          - status_image_file = page.count == page.passed ? 'success.png' : 'failure.png'
+          .pull-right
+            %span.caret
+          %h4.panel-title
+            =image_tag(status_image_file, size: "16x16")
             #{page.pdf_name} -
             %strong (#{page.count})
-      .panel-collapse.collapse{:id => "content_#{i}"}
+
+      %div{class: css, id: "content_#{i}"}
         .panel-body
           %table.table.table-striped.table-reports
             %tr
@@ -48,3 +54,4 @@
                   %td= image_tag(status_image, size: "28x28", alt: status_message)
                 - if ["processed", "failure"].include? (params[:status])
                   %td= r.reason
+= paginate @reports_page

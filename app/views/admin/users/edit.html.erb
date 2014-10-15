@@ -1,4 +1,5 @@
-<%= simple_form_for [:admin, @user], :url => admin_user_path(@user), wrapper: :horizontal_form,  :id => "edit_user"  do |f| -%>
+<%= simple_form_for [:admin, @user], :url => admin_user_path(@user), wrapper: :horizontal_form_small,  :id => "edit_user"  do |f| -%>
+  <h5> Edit User Information</h5>
   <input name="_method" type="hidden" value="put" />
   <%= render :partial => "form", :locals => {:f => f} %>
 <% end -%>

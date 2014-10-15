@@ -1,4 +1,5 @@
-= simple_form_for @project, wrapper: :horizontal_form do |f|
+= simple_form_for @project, wrapper: :horizontal_form_small do |f|
+  %h5 Edit Project Information
   %input{:name => "_method", :type => "hidden", :value => "put"}
   = f.input :name
   = f.input :description, as: :text
@@ -12,6 +13,5 @@
         $('#datetimepicker7').datetimepicker();
     });
 
-  = f.button :submit, "Save", class: %w(btn btn-default btn-success)
-  = link_to "Cancel", projects_path , :class => "btn btn-sm btn-default"
+  = f.button :submit, "Save", class: %w(btn btn-default btn-success col-sm-offset-6)
 

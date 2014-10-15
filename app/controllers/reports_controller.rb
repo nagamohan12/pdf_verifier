@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  layout false
   def index
     @test_run = TestRun.find(params[:test_run_id])
     @search = Report.search(params[:q])

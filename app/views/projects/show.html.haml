@@ -1,30 +1,34 @@
-#project.row
+#project.projects_search
   - if current_user.admin?
     .pull-right
-      = link_to 'Back', projects_path, class: 'btn btn-sm btn-primary'
       - if @project.pdf_xml_mappings.first.present?
         = link_to 'List of mappings', project_mappings_path(@project), class: 'btn btn-sm btn-primary'
       = link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-primary'
       = link_to 'Destroy', @project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-sm btn-primary'
-  %h3 Project : #{@project.name}
-  = paginate @test_runs
+  .cnt-header-txt
+    Project : #{@project.name}
   - i = 0
-%table.table.table-striped.table-hover
-  %tr
-    %th Sl No.
-    %th Last Ran At
-    %th Status
-    %th Processed
-    %th Success
-    %th Failed
-
-  - @test_runs.each do |test_run|
-    - i = i+1
+.cnt-box
+  %table.table.table-striped.table-hover#projects_show
     %tr
-      %td= i
-      %td= test_run.run_at.strftime('%d-%b-%Y %I:%M%p')  if test_run.run_at.present?
-      - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
-      %td= image_tag(status_image, size: "28x28", alt: test_run.status)
-      %td= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline")
-      %td= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline")
-      %td= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline")
+      %th{style:"width: 60px;",:align => "center"} Sl No.
+      %th Last Ran At
+      %th{style:"width: 90px;"} Status
+      %th{style:"width: 90px;"} Processed
+      %th{style:"width: 90px;"} Success
+      %th{style:"width: 90px;"} Failed
+
+    - @test_runs.each do |test_run|
+      - i = i+1
+      %tr
+        %td= i
+        %td= test_run.run_at.strftime('%d-%b-%Y %I:%M%p')  if test_run.run_at.present?
+        - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
+        %td= image_tag(status_image, size: "28x28", alt: test_run.status)
+        %td.blue= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
+        %td.green= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
+        %td.red= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
+.modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+= paginate @test_runs

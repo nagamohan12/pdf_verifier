@@ -87,3 +87,50 @@ body {
     float:left;
     margin:0% 1%;
 }
+
+.modal-lg {
+    width: 85%;
+}
+
+.panel-group {
+    .reports         {
+        @include gradient-vertical(white, #e8e8e8, 0%, 100%);
+    }
+    .panel{
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
+        border-radius: 0px;
+    }
+    .panel-title{
+      font-size: 13px;
+      line-height: 22px;
+    }
+    .panel-heading{
+        padding: 6px 10px;
+        color: #535353;
+    }
+}
+.modal-content {
+    padding: 10px 10px;
+}
+.edit_user  {
+    .form-control
+    {
+    width: 220px;
+    }
+    h5 {
+        color: #0072c4;
+        border-bottom: #cdcdcd 1px solid;
+        padding-bottom: 8px;
+        width: 1000px;
+        margin: 20px auto;
+    }
+    .form-group{
+        .col-sm-6 {
+          padding-left: 0px !important;
+        }
+    }
+}
+.edit_project {
+ @extend .edit_user
+}

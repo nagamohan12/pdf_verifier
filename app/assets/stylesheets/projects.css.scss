@@ -85,3 +85,7 @@ input.form-style {
       a {color:#009dd0;}
     }
 }
+
+#projects_show{
+  @extend #projects_list;
+}
