@@ -16,4 +16,22 @@ class TestRun < ActiveRecord::Base
 	def processed
 		self.total.to_i
 	end
+
+	def status_message
+		message = self.status.downcase
+		case message
+		when 'success'
+			'SUCCESS'
+		when 'failed'
+			'FAILED'
+		when 'xmlfof'
+			'XML folder not found in specified path'
+		when 'pdffof'
+			'PDF folder not found in specified path'
+		when 'fof'
+			'Both XML and PDF folder not found in specified path'
+		else 
+			'Still in progress,please wait....'
+		end
+	end
 end
