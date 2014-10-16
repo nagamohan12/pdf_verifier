@@ -151,3 +151,20 @@ body {
 .input-group-addon{
   width: 0%;
 }
+
+.devise {
+  width: 30%;
+  top: 20%;
+  left: 35%;
+  position: absolute;
+  border: 1px solid #cdcdcd;
+  display: block;
+
+  align: center;
+  .form-group {
+    width: 30%;
+  }
+  .sign-in {
+    padding-left: 10%;
+  }
+}
