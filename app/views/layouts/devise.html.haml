@@ -1,0 +1,16 @@
+!!!
+%html{:lang => "en"}
+  %head= render partial: 'layouts/head'
+  %body.devise
+    .navbar.navbar-static-top.banner{:role => "navigation"}
+      .container-fluid
+        %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          .navbar-header.logo
+            %img{:src => "/assets/logo.png"}
+          %span.pull-right{style: "valign: middle; padding-top: 14px;font-size:20px;color: #FFF"} Sign In
+    .container
+      = yield
