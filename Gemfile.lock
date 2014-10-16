@@ -66,8 +66,6 @@ GEM
       sass (~> 3.2)
     bootstrap3-datetimepicker-rails (3.1.2)
       momentjs-rails (>= 2.8.1)
-    bootswatch-rails (3.2.3)
-      railties (>= 3.1)
     builder (3.2.2)
     cancancan (1.9.2)
     coderay (1.1.0)
@@ -214,7 +212,6 @@ DEPENDENCIES
   bootstrap-kaminari-views
   bootstrap-sass (~> 3.2.0)
   bootstrap3-datetimepicker-rails (~> 3.1.2)
-  bootswatch-rails
   cancancan
   coffee-rails (~> 4.0.0)
   devise

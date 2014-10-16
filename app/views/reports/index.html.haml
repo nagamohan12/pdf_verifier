@@ -42,7 +42,7 @@
               %th.col-lg-2 Xml Node
               - if params[:status] == "processed"
                 %th.col-lg-1 Status
-              - if ["processed", "failure"].include? (params[:status])
+              - if ["processed", "failed"].include? (params[:status])
                 %th.col-lg-5 Reason
 
             - @reports[page.pdf_name].each do |r|
@@ -52,6 +52,6 @@
                   - status_image = r.is_passed ? 'success.png' : 'failure.png'
                   - status_message = r.is_passed ? 'success' : 'failure'
                   %td= image_tag(status_image, size: "28x28", alt: status_message)
-                - if ["processed", "failure"].include? (params[:status])
+                - if ["processed", "failed"].include? (params[:status])
                   %td= r.reason
 = paginate @reports_page
