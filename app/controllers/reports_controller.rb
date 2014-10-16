@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
     @reports = @search.result.where(test_run_id: @test_run.id)
     if params[:status] == 'success'
       @reports = @reports.passed
-    elsif params[:status] == 'failure'
+    elsif params[:status] == 'failed'
       @reports = @reports.failure
     end
       @reports_page = @reports.group(:pdf_name).select('pdf_name, count(*) as count, sum(is_passed) as passed').order(:pdf_name).page(params[:page]).per(3)

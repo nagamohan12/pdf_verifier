@@ -37,7 +37,7 @@ else
 			end
 		end
 		21.times do |i|
-			test_run = TestRun.create(project_id: project.id , status: 'failure', total: i, failures: i , run_at: i.day.from_now)
+			test_run = TestRun.create(project_id: project.id , status: 'failed', total: i, failures: i , run_at: i.day.from_now)
 			i.times do |r|
 				Report.create(pdf_name: project.name+r.to_s+'.pdf', xml_node: 'xml_node'+i.to_s+r.to_s, reason: 'failed'+project.name+i.to_s+r.to_s+'a-z', test_run_id: test_run.id, is_passed: false)
 			end
