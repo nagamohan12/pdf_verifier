@@ -79,6 +79,13 @@ body {
 .footer {
     text-align: center;
     margin: 0px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border-top: 1px solid #cdcdcd;
+    line-height: 24px;
+    font-size: 11px;
+
 }
 
 .cnt-wrapper {
@@ -133,4 +140,10 @@ body {
 }
 .edit_project {
  @extend .edit_user
+ }
+ 
+.users {
+    width: 70%;
+    align: center;
+    margin-left: 15%;
 }
