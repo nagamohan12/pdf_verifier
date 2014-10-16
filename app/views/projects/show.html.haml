@@ -11,28 +11,29 @@
 .cnt-box
   %table.table.table-striped.table-hover#projects_show
     %tr
-      %th{style:"width: 60px;",:align => "center"} Sl No.
+      %th{style:"width: 80px; text-align => center"} Sl No.
       %th Last Ran At
-      %th{style:"width: 90px;"} Status
-      %th{style:"width: 90px;"} Processed
-      %th{style:"width: 90px;"} Success
-      %th{style:"width: 90px;"} Failed
+      %th{style:"width: 90px; text-align => center"} Status
+      %th{style:"width: 90px; text-align => center"} Processed
+      %th{style:"width: 90px;text-align => center"} Success
+      %th{style:"width: 90px;text-align => center"} Failed
 
     - @test_runs.each do |test_run|
       - i = i+1
       %tr
-        %td= i
+        %td{:align => "center"}= i
         %td= test_run.run_at.strftime('%d-%b-%Y %I:%M%p')  if test_run.run_at.present?
         - if test_run.status == 'success' || test_run.status == 'failure'
           - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
-          %td= image_tag(status_image, size: "28x28", alt: test_run.status)
-          %td.blue= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
-          %td.green= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
-          %td.red= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
+          %td{:align => "center"}= image_tag(status_image, size: "28x28", alt: test_run.status)
+          %td.blue{:align => "center"}= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
+          %td.green{:align => "center"}= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
+          %td.red{:align => "center"}= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failure', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
         - else
           %td{colspan: 4,align: 'center'}= test_run.status_message
 .modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-lg
     .modal-content
+.pagination1{style: "margin-top: -10px;"}
 = paginate @test_runs
 
