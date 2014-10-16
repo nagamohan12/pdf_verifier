@@ -44,11 +44,12 @@
                   %span
                     %img{:src => "/assets/list-icon.png"}
                   Projects
-              %li
-                %a{"data-target" => "#myModal", "data-toggle" => "modal"}
-                  %span
-                    %img{:alt => "add", :height => "14", :src => "/assets/add-icon.png", :width => "14"}/
-                    New Project
+              -if current_user.admin?
+                %li
+                  %a{"data-target" => "#myModal", "data-toggle" => "modal"}
+                    %span
+                      %img{:alt => "add", :height => "14", :src => "/assets/add-icon.png", :width => "14"}/
+                      New Project
     .container-fluid
       .col-lg.cnt-wrapper
         = yield

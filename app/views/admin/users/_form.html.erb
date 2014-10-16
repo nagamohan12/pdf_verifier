@@ -4,5 +4,6 @@
 <%= f.input :password  %>
 <%= f.input :password_confirmation %>
 <%= f.button :submit , "Save", class: %w(btn btn-sm btn-success col-sm-offset-6) %>
-<%= link_to "Cancel", admin_users_path , :class => "btn btn-sm btn-default"%>
+<% cancel_path = current_user.normal_user? ? project_path : admin_users_path %>
+<%= link_to "Cancel", cancel_path , :class => "btn btn-sm btn-default"%>
 
