@@ -1,12 +1,24 @@
 <div class='users'>
-<div id="new_user_form" style="display:none;">
- <h3> New User</h3>
-  <%= render :partial => "new", :locals => {:user => User.new}%>
-</div>
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">New User</h4>
+      </div>
+      <div class="modal-body" id = "new_user_form">
+         <%= render :partial => "new", :locals => {:user => User.new}%>
+      </div>
+      </div>
+    </div>
+  </div>
 <div>
-<div class="pull-right"><button class='btn btn-primary' id = "new_form">New</button></div>
-<h3>Users</h3>
+<div class="pull-right">
+  <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal1">
+    New User
+  </button>
 </div>
+<h3>Users</h3>
 <table class="table table-striped" id='users_list'>
  <thead>
   <tr>
@@ -26,11 +38,3 @@
 </table>
 </div>
 
-<script type = "text/javascript">
-
-  $("#new_form").click(function(){
-    $("#new_user_form").css("display", "block");
-    $(this).hide();
-  })
-
-</script>
