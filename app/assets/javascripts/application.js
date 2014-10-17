@@ -20,3 +20,19 @@
 //= require bootstrap-datetimepicker
 //= require_tree .
 
+
+$(function() {
+
+    $(".bs-example-modal-lg").on("show.bs.modal", function() {
+      $(".modal .modal-content").css("overflow-y", "auto");
+      $(".modal .modal-content").css("height", screen.height * 0.77);
+    });
+
+    $(".bs-example-modal-lg").on("hidden.bs.modal", function(e) {
+      return $(this).removeData('bs.modal');
+    });
+
+    return $(".panel").on("show.bs.collapse", function(e) {
+      return console.log('Event fired on #' + e.currentTarget.id);
+    });
+});
