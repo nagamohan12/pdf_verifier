@@ -144,12 +144,20 @@ footer {
   position: absolute;
   border: 1px solid #cdcdcd;
   display: block;
-
-  align: center;
-  .form-group {
-    width: 30%;
+  padding: 0px;
+  .devise-content {
+    padding: 0 20px 10px;
+    .form-inputs{
+        padding: 15px;
+    }
+    font-size: 12px;
   }
   .sign-in {
-    padding-left: 10%;
+    .col-sm-6 {
+        padding: 0px;
+    }
+    .boolean, a {
+        font-size: 11px;
+    } 
   }
 }
