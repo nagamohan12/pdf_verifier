@@ -1,11 +1,11 @@
-= f.input :name, input_html: {maxlength: 50}
-= f.input :description, as: :text
-= f.input :input_folder
-= f.input :pdf_folder
+= f.input :name, input_html: {maxlength: 50}, placeholder: 'Project Name'
+= f.input :description, as: :text, placeholder: 'Description'
+= f.input :input_folder, placeholder: 'Ex: /home/user/xml_folder'
+= f.input :pdf_folder, placeholder: 'Ex: /home/user/pdf_folder'
 = f.input :active, as: :boolean
 = f.input :run_frequency, collection: ['Daily','Hourly','Weekly','Monthly'], prompt: false
 
-= f.input :next_run, as: :datetime_picker, input_html: {id: 'datetimepicker6'}
+= f.input :next_run, as: :datetime_picker, input_html: {id: 'datetimepicker6'}, placeholder: 'dd/mm/yyyy hr/min'
 :javascript
   $(function () {
     $('#datetimepicker6').datetimepicker();
