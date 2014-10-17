@@ -12,8 +12,8 @@
       %td= organization.description || "--"
       %td
         = link_to 'Show', admin_organization_path(organization), :class => "btn btn-primary btn-xs"
-        = link_to 'Edit', edit_admin_organization_path(organization), :class => "btn btn-primary btn-xs"
-        = link_to 'Delete', admin_organization_path(organization), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-primary btn-xs"
+        = link_to image_tag('../assets/edit-icon.png',title: 'Edit'), edit_admin_organization_path(organization)
+        = link_to image_tag('../assets/delete-user-icon.png',title: 'Delete'), admin_organization_path(organization), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

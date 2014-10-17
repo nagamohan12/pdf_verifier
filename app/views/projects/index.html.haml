@@ -2,7 +2,7 @@
   = search_form_for @search do |s|
     %ul.nav.navbar-nav.navbar-right
       %li
-        %img{:alt => "search", :height => "15", :src => "/assets/search-icon.png", :width => "15"}/
+        %img{:alt => "search", :height => "15", :src => "/assets/search-icon.png", :width => "15",title: 'search'}/
       %li
         = s.text_field :name_cont, class: "form-style", placeholder: "Project Name"
       %li

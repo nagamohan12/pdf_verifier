@@ -2,9 +2,9 @@
   - if current_user.admin?
     .pull-right
       - if @project.pdf_xml_mappings.first.present?
-        = link_to 'List of mappings', project_mappings_path(@project), class: 'btn btn-sm btn-primary'
-      = link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-primary'
-      = link_to 'Delete', @project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-sm btn-primary'
+        = link_to 'List of mappings', project_mappings_path(@project), class: 'btn btn-sm btn-primary',title: "List of mappings"
+      = link_to image_tag('../assets/edit-icon.png',title: 'Edit Project'), edit_project_path(@project)
+      = link_to image_tag('../assets/trash1.png',title: 'Delete Project'), @project, :method => :delete, :data => { :confirm => 'Are you sure?' }
   .cnt-header-txt
     Project : #{@project.name}
   - i = 0
@@ -25,7 +25,7 @@
         %td= test_run.run_at.strftime('%d-%b-%Y %I:%M%p')  if test_run.run_at.present?
         - if test_run.status == 'success' || test_run.status == 'failed'
           - status_image = test_run.failed > 0 ?  'failure.png' : 'success.png'
-          %td{:align => "center"}= image_tag(status_image, size: "22x22", alt: test_run.status)
+          %td{:align => "center"}= image_tag(status_image, size: "22x22", alt: test_run.status, title: test_run.status)
           %td.blue{:align => "center"}= link_to_if(test_run.processed > 0, test_run.processed, reports_path(test_run_id: test_run.id, status: 'processed', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
           %td.green{:align => "center"}= link_to_if(test_run.success > 0, test_run.success, reports_path(test_run_id: test_run.id, status: 'success', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
           %td.red{:align => "center"}= link_to_if(test_run.failed > 0, test_run.failed, reports_path(test_run_id: test_run.id, status: 'failed', from: 'test_runs'), :class => "link-underline", data: { toggle: 'modal', target: '.bs-example-modal-lg'})
