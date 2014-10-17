@@ -6,7 +6,7 @@
       %li
         = s.text_field :name_cont, class: "form-style", placeholder: "Project Name"
       %li
-        = s.input :last_run_cont, label: false, input_html: {id: 'datetimepicker',"data-date-format" => "YYYY/MM/DD",class: "form-style"}, placeholder: "Last Run At"
+        = s.input :last_run_cont, label: false, input_html: {id: 'datetimepicker',"data-date-format" => "YYYY/MM/DD",class: "form-style"}, placeholder: "Last Ran At (yyyy/mm/dd)"
         :javascript
           $(function () {
             $('#datetimepicker').datetimepicker({

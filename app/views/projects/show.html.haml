@@ -4,7 +4,7 @@
       - if @project.pdf_xml_mappings.first.present?
         = link_to 'List of mappings', project_mappings_path(@project), class: 'btn btn-sm btn-primary'
       = link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-primary'
-      = link_to 'Destroy', @project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-sm btn-primary'
+      = link_to 'Delete', @project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-sm btn-primary'
   .cnt-header-txt
     Project : #{@project.name}
   - i = 0
