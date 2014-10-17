@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
     elsif params[:status] == 'failed'
       @reports = @reports.failure
     end
-      @reports_page = @reports.group(:pdf_name).select('pdf_name, count(*) as count, sum(is_passed) as passed').order(:pdf_name).page(params[:page]).per(3)
+      @reports_page = @reports.group(:pdf_name).select('pdf_name, count(*) as count, sum(is_passed) as passed').order(:pdf_name).page(params[:page]).per(10)
       @reports = @reports.group_by{ |t| t.pdf_name}
   end
 end

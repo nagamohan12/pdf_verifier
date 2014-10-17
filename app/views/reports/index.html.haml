@@ -23,7 +23,6 @@
   - i = 0
   - @reports_page.each do |page|
     - i = i + 1
-    - css = (i == 1) ? 'panel-collapse collapse in' : 'panel-collapse collapse'
     .panel.panel-default
       %a{"data-parent" => "#accordion1", "data-toggle" => "collapse", :href => "#content_#{i}"}
         .panel-heading.reports
@@ -35,7 +34,7 @@
             #{page.pdf_name} -
             %strong (#{page.count})
 
-      %div{class: css, id: "content_#{i}"}
+      %div{class: 'panel-collapse collapse', id: "content_#{i}"}
         .panel-body
           %table.table.table-striped.table-reports
             %tr
